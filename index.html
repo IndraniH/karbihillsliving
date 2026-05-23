@@ -60,27 +60,9 @@ body {
   color: var(--text-primary);
   overflow-x: hidden;
   transition: background 0.4s ease, color 0.4s ease;
-  cursor: none;
 }
 
-/* CUSTOM CURSOR */
-.cursor {
-  width: 8px; height: 8px;
-  background: var(--bamboo);
-  border-radius: 50%;
-  position: fixed; pointer-events: none; z-index: 9999;
-  transform: translate(-50%,-50%);
-  transition: width 0.2s, height 0.2s, opacity 0.2s;
-}
-.cursor-ring {
-  width: 36px; height: 36px;
-  border: 1px solid rgba(200,169,110,0.5);
-  border-radius: 50%;
-  position: fixed; pointer-events: none; z-index: 9998;
-  transform: translate(-50%,-50%);
-  transition: all 0.12s ease;
-}
-body:hover .cursor { opacity: 1; }
+
 
 /* SCROLLBAR */
 ::-webkit-scrollbar { width: 3px; }
@@ -130,7 +112,7 @@ nav.scrolled {
 .theme-toggle {
   background: none; border: 1px solid var(--border);
   width: 36px; height: 36px; border-radius: 50%;
-  cursor: none; color: var(--text-secondary);
+  cursor: pointer; color: var(--text-secondary);
   font-size: 0.9rem; transition: var(--transition);
   display: flex; align-items: center; justify-content: center;
 }
@@ -141,7 +123,7 @@ nav.scrolled {
   letter-spacing: 0.25em; text-transform: uppercase;
   background: var(--bamboo); color: var(--charcoal);
   padding: 11px 24px; border: none;
-  cursor: none; text-decoration: none;
+  cursor: pointer; text-decoration: none;
   transition: var(--transition);
 }
 .btn-book:hover { background: var(--bamboo-light); transform: translateY(-1px); }
@@ -151,7 +133,7 @@ nav.scrolled {
   background: none; border: 1px solid var(--border);
   color: var(--text-secondary); padding: 6px 12px;
   font-family: 'Jost'; font-size: 0.65rem; letter-spacing: 0.1em;
-  cursor: none; transition: var(--transition);
+  cursor: pointer; transition: var(--transition);
 }
 .lang-select:hover { border-color: var(--bamboo); color: var(--bamboo); }
 
@@ -251,7 +233,7 @@ nav.scrolled {
   font-family: 'Jost'; font-size: 0.68rem; font-weight: 400;
   letter-spacing: 0.3em; text-transform: uppercase;
   background: var(--bamboo); color: var(--charcoal);
-  padding: 16px 40px; border: none; cursor: none;
+  padding: 16px 40px; border: none; cursor: pointer;
   text-decoration: none; transition: var(--transition);
   display: inline-block;
 }
@@ -262,7 +244,7 @@ nav.scrolled {
   letter-spacing: 0.3em; text-transform: uppercase;
   background: none; color: var(--text-secondary);
   padding: 16px 40px; border: 1px solid var(--border);
-  cursor: none; text-decoration: none; transition: var(--transition);
+  cursor: pointer; text-decoration: none; transition: var(--transition);
 }
 .btn-ghost:hover { border-color: var(--bamboo); color: var(--bamboo); }
 
