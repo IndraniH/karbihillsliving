@@ -1,0 +1,2418 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Karbi Hills Living — Curated Luxury Experiences, Northeast India</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@200;300;400;500&family=Playfair+Display:ital,wght@1,400;1,500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bamboo: #C8A96E;
+  --bamboo-light: #E2C99A;
+  --bamboo-dark: #8B6F3E;
+  --forest: #2D4A2D;
+  --forest-mid: #3D6B3D;
+  --forest-light: #5A8A5A;
+  --earth: #6B4C2A;
+  --earth-light: #A0734A;
+  --smoke: #F2EDE4;
+  --cream: #FAF6EE;
+  --dusk: #1A1612;
+  --charcoal: #0F0D0A;
+  --mist: rgba(242,237,228,0.06);
+  --mist-strong: rgba(242,237,228,0.12);
+  --gold: #D4AF6A;
+  --gold-pale: rgba(212,175,106,0.15);
+  --text-primary: #F2EDE4;
+  --text-secondary: rgba(242,237,228,0.65);
+  --text-muted: rgba(242,237,228,0.35);
+  --bg-primary: #0F0D0A;
+  --bg-secondary: #1A1612;
+  --bg-card: rgba(255,255,255,0.03);
+  --border: rgba(200,169,110,0.18);
+  --border-subtle: rgba(242,237,228,0.08);
+  --radius: 2px;
+  --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-theme="light"] {
+  --text-primary: #1A1612;
+  --text-secondary: rgba(26,22,18,0.65);
+  --text-muted: rgba(26,22,18,0.4);
+  --bg-primary: #F7F2EA;
+  --bg-secondary: #EDE7DB;
+  --bg-card: rgba(0,0,0,0.03);
+  --border: rgba(139,111,62,0.25);
+  --border-subtle: rgba(26,22,18,0.1);
+  --mist: rgba(26,22,18,0.04);
+  --mist-strong: rgba(26,22,18,0.08);
+  --dusk: #FAF6EE;
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; font-size: 16px; }
+
+body {
+  font-family: 'Jost', sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  overflow-x: hidden;
+  transition: background 0.4s ease, color 0.4s ease;
+  cursor: none;
+}
+
+/* CUSTOM CURSOR */
+.cursor {
+  width: 8px; height: 8px;
+  background: var(--bamboo);
+  border-radius: 50%;
+  position: fixed; pointer-events: none; z-index: 9999;
+  transform: translate(-50%,-50%);
+  transition: width 0.2s, height 0.2s, opacity 0.2s;
+}
+.cursor-ring {
+  width: 36px; height: 36px;
+  border: 1px solid rgba(200,169,110,0.5);
+  border-radius: 50%;
+  position: fixed; pointer-events: none; z-index: 9998;
+  transform: translate(-50%,-50%);
+  transition: all 0.12s ease;
+}
+body:hover .cursor { opacity: 1; }
+
+/* SCROLLBAR */
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: var(--bg-primary); }
+::-webkit-scrollbar-thumb { background: var(--bamboo-dark); }
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  padding: 28px 60px;
+  display: flex; align-items: center; justify-content: space-between;
+  transition: var(--transition);
+}
+nav.scrolled {
+  background: rgba(15,13,10,0.92);
+  backdrop-filter: blur(20px);
+  padding: 18px 60px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+[data-theme="light"] nav.scrolled { background: rgba(247,242,234,0.92); }
+
+.nav-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.3rem; font-weight: 400;
+  letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--text-primary);
+  text-decoration: none;
+  display: flex; flex-direction: column; line-height: 1;
+}
+.nav-logo span { font-size: 0.55rem; letter-spacing: 0.4em; color: var(--bamboo); font-family: 'Jost'; font-weight: 300; margin-top: 4px; }
+
+.nav-links { display: flex; gap: 40px; list-style: none; }
+.nav-links a {
+  font-size: 0.72rem; font-weight: 300; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--text-secondary);
+  text-decoration: none; transition: color 0.3s;
+  position: relative;
+}
+.nav-links a::after {
+  content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px;
+  background: var(--bamboo); transition: width 0.3s ease;
+}
+.nav-links a:hover { color: var(--bamboo); }
+.nav-links a:hover::after { width: 100%; }
+
+.nav-actions { display: flex; align-items: center; gap: 20px; }
+.theme-toggle {
+  background: none; border: 1px solid var(--border);
+  width: 36px; height: 36px; border-radius: 50%;
+  cursor: none; color: var(--text-secondary);
+  font-size: 0.9rem; transition: var(--transition);
+  display: flex; align-items: center; justify-content: center;
+}
+.theme-toggle:hover { border-color: var(--bamboo); color: var(--bamboo); }
+
+.btn-book {
+  font-family: 'Jost'; font-size: 0.65rem; font-weight: 400;
+  letter-spacing: 0.25em; text-transform: uppercase;
+  background: var(--bamboo); color: var(--charcoal);
+  padding: 11px 24px; border: none;
+  cursor: none; text-decoration: none;
+  transition: var(--transition);
+}
+.btn-book:hover { background: var(--bamboo-light); transform: translateY(-1px); }
+
+/* LANGUAGE SELECTOR */
+.lang-select {
+  background: none; border: 1px solid var(--border);
+  color: var(--text-secondary); padding: 6px 12px;
+  font-family: 'Jost'; font-size: 0.65rem; letter-spacing: 0.1em;
+  cursor: none; transition: var(--transition);
+}
+.lang-select:hover { border-color: var(--bamboo); color: var(--bamboo); }
+
+/* HERO */
+.hero {
+  height: 100vh; min-height: 700px;
+  position: relative; overflow: hidden;
+  display: flex; align-items: flex-end;
+  padding: 0 60px 80px;
+}
+
+.hero-bg {
+  position: absolute; inset: 0;
+  background: 
+    radial-gradient(ellipse at 30% 60%, rgba(45,74,45,0.4) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 20%, rgba(107,76,42,0.3) 0%, transparent 50%),
+    linear-gradient(160deg, #0A0C08 0%, #141210 40%, #1A1A0F 100%);
+}
+
+/* Animated forest particles */
+.hero-particles {
+  position: absolute; inset: 0; pointer-events: none;
+}
+.particle {
+  position: absolute; border-radius: 50%;
+  background: rgba(200,169,110,0.15);
+  animation: float linear infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(100vh) translateX(0) rotate(0deg); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 0.3; }
+  100% { transform: translateY(-100px) translateX(60px) rotate(360deg); opacity: 0; }
+}
+
+/* Bamboo silhouette lines */
+.bamboo-lines {
+  position: absolute; right: 0; top: 0; bottom: 0;
+  width: 45%; opacity: 0.07;
+  background: repeating-linear-gradient(
+    to right,
+    transparent, transparent 18px,
+    rgba(200,169,110,1) 18px, rgba(200,169,110,1) 20px
+  );
+  mask-image: linear-gradient(to left, rgba(0,0,0,0.8), transparent);
+}
+
+.hero-visual {
+  position: absolute; right: 60px; top: 50%;
+  transform: translateY(-50%);
+  width: 42%; max-width: 600px;
+}
+
+.hero-img-frame {
+  position: relative; aspect-ratio: 3/4;
+  overflow: hidden;
+}
+.hero-img-frame::before {
+  content: ''; position: absolute; inset: 0;
+  background: 
+    linear-gradient(to bottom, transparent 30%, rgba(15,13,10,0.7) 100%),
+    linear-gradient(to right, rgba(15,13,10,0.3), transparent 40%);
+  z-index: 1;
+}
+/* Cinematic landscape SVG */
+.hero-landscape {
+  width: 100%; height: 100%; object-fit: cover;
+}
+
+.hero-content { position: relative; z-index: 2; max-width: 600px; }
+.hero-eyebrow {
+  font-size: 0.65rem; font-weight: 300; letter-spacing: 0.45em;
+  text-transform: uppercase; color: var(--bamboo);
+  margin-bottom: 24px; display: flex; align-items: center; gap: 16px;
+}
+.hero-eyebrow::before {
+  content: ''; width: 40px; height: 1px; background: var(--bamboo);
+}
+
+.hero-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(3.5rem, 7vw, 6.5rem);
+  font-weight: 300; line-height: 0.95;
+  margin-bottom: 28px; letter-spacing: -0.02em;
+}
+.hero-title em { font-style: italic; color: var(--bamboo-light); }
+
+.hero-sub {
+  font-size: 0.9rem; font-weight: 200; line-height: 1.8;
+  color: var(--text-secondary); max-width: 420px;
+  margin-bottom: 48px; letter-spacing: 0.03em;
+}
+
+.hero-ctas { display: flex; gap: 16px; align-items: center; }
+.btn-primary {
+  font-family: 'Jost'; font-size: 0.68rem; font-weight: 400;
+  letter-spacing: 0.3em; text-transform: uppercase;
+  background: var(--bamboo); color: var(--charcoal);
+  padding: 16px 40px; border: none; cursor: none;
+  text-decoration: none; transition: var(--transition);
+  display: inline-block;
+}
+.btn-primary:hover { background: var(--bamboo-light); transform: translateY(-2px); }
+
+.btn-ghost {
+  font-family: 'Jost'; font-size: 0.68rem; font-weight: 300;
+  letter-spacing: 0.3em; text-transform: uppercase;
+  background: none; color: var(--text-secondary);
+  padding: 16px 40px; border: 1px solid var(--border);
+  cursor: none; text-decoration: none; transition: var(--transition);
+}
+.btn-ghost:hover { border-color: var(--bamboo); color: var(--bamboo); }
+
+.hero-scroll {
+  position: absolute; bottom: 80px; right: 60px; z-index: 2;
+  display: flex; flex-direction: column; align-items: center; gap: 12px;
+  font-size: 0.6rem; letter-spacing: 0.35em; text-transform: uppercase;
+  color: var(--text-muted); transform: rotate(90deg) translateX(50px);
+}
+.hero-scroll-line {
+  width: 60px; height: 1px; background: var(--bamboo-dark);
+  position: relative; overflow: hidden;
+}
+.hero-scroll-line::after {
+  content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+  background: var(--bamboo);
+  animation: scrollLine 2s ease infinite;
+}
+@keyframes scrollLine {
+  0% { left: -100%; } 100% { left: 100%; }
+}
+
+/* MARQUEE STRIP */
+.marquee-strip {
+  background: var(--bamboo); padding: 14px 0;
+  overflow: hidden; white-space: nowrap;
+}
+.marquee-track {
+  display: inline-flex; gap: 60px;
+  animation: marquee 25s linear infinite;
+}
+.marquee-track span {
+  font-size: 0.65rem; font-weight: 400; letter-spacing: 0.35em;
+  text-transform: uppercase; color: var(--charcoal);
+}
+.marquee-track .dot { color: var(--earth); font-size: 1rem; line-height: 1; }
+@keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+/* SECTIONS */
+section { position: relative; }
+
+.section-header {
+  margin-bottom: 64px;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 40px; align-items: end;
+}
+.section-header.centered {
+  grid-template-columns: 1fr; text-align: center;
+  align-items: center; max-width: 700px; margin: 0 auto 64px;
+}
+
+.section-eyebrow {
+  font-size: 0.62rem; font-weight: 300; letter-spacing: 0.45em;
+  text-transform: uppercase; color: var(--bamboo);
+  margin-bottom: 16px; display: flex; align-items: center; gap: 14px;
+}
+.section-eyebrow::before {
+  content: ''; width: 28px; height: 1px; background: var(--bamboo);
+}
+.section-header.centered .section-eyebrow { justify-content: center; }
+.section-header.centered .section-eyebrow::before { display: none; }
+
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.4rem, 4vw, 3.8rem);
+  font-weight: 300; line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+.section-title em { font-style: italic; color: var(--bamboo-light); }
+
+.section-desc {
+  font-size: 0.88rem; font-weight: 200; line-height: 1.9;
+  color: var(--text-secondary); letter-spacing: 0.02em;
+  align-self: end;
+}
+
+/* ABOUT / PHILOSOPHY */
+.philosophy {
+  padding: 120px 60px;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 80px; align-items: center;
+}
+.philosophy-quote {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
+  font-weight: 300; line-height: 1.4;
+  font-style: italic; color: var(--text-primary);
+  border-left: 2px solid var(--bamboo);
+  padding-left: 40px; margin-bottom: 40px;
+}
+.philosophy-text {
+  font-size: 0.88rem; font-weight: 200; line-height: 2;
+  color: var(--text-secondary); letter-spacing: 0.02em;
+  margin-bottom: 24px;
+}
+.philosophy-visual { position: relative; }
+.philosophy-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+}
+.phil-card {
+  aspect-ratio: 1; border-radius: var(--radius);
+  position: relative; overflow: hidden;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 12px;
+  padding: 24px; text-align: center;
+  transition: var(--transition);
+}
+.phil-card:nth-child(1) { background: linear-gradient(135deg, rgba(45,74,45,0.4), rgba(45,74,45,0.1)); }
+.phil-card:nth-child(2) { background: linear-gradient(135deg, rgba(107,76,42,0.3), rgba(107,76,42,0.1)); }
+.phil-card:nth-child(3) { background: linear-gradient(135deg, rgba(200,169,110,0.2), rgba(200,169,110,0.05)); }
+.phil-card:nth-child(4) { background: linear-gradient(135deg, rgba(90,138,90,0.25), rgba(90,138,90,0.05)); }
+.phil-card:hover { transform: translateY(-4px); border-color: var(--bamboo); }
+.phil-icon { font-size: 2rem; }
+.phil-label {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem; font-weight: 400;
+  color: var(--bamboo-light);
+}
+.phil-sub { font-size: 0.7rem; font-weight: 200; letter-spacing: 0.1em; color: var(--text-muted); }
+
+/* EXPERIENCES */
+.experiences { padding: 100px 60px; }
+
+.exp-categories {
+  display: flex; gap: 4px; margin-bottom: 48px;
+  flex-wrap: wrap;
+}
+.exp-cat {
+  font-size: 0.65rem; font-weight: 300; letter-spacing: 0.3em;
+  text-transform: uppercase; padding: 10px 24px;
+  background: var(--bg-card); border: 1px solid var(--border-subtle);
+  color: var(--text-muted); cursor: none; transition: var(--transition);
+}
+.exp-cat.active, .exp-cat:hover {
+  background: var(--bamboo); color: var(--charcoal);
+  border-color: var(--bamboo);
+}
+
+.exp-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+}
+.exp-card {
+  position: relative; overflow: hidden;
+  aspect-ratio: 3/4; cursor: none;
+  transition: var(--transition);
+}
+.exp-card:first-child { grid-row: span 2; aspect-ratio: auto; }
+.exp-card-bg {
+  position: absolute; inset: 0;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.exp-card:hover .exp-card-bg { transform: scale(1.06); }
+.exp-card-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(15,13,10,0.9) 0%, rgba(15,13,10,0.2) 50%, transparent 100%);
+  transition: var(--transition);
+}
+.exp-card:hover .exp-card-overlay {
+  background: linear-gradient(to top, rgba(15,13,10,0.95) 0%, rgba(15,13,10,0.4) 60%, rgba(15,13,10,0.1) 100%);
+}
+.exp-card-content {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 32px 28px;
+  transform: translateY(0); transition: var(--transition);
+}
+.exp-tag {
+  font-size: 0.58rem; font-weight: 300; letter-spacing: 0.35em;
+  text-transform: uppercase; color: var(--bamboo);
+  margin-bottom: 10px; display: block;
+}
+.exp-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5rem; font-weight: 400; margin-bottom: 10px;
+}
+.exp-desc {
+  font-size: 0.78rem; font-weight: 200; color: var(--text-secondary);
+  line-height: 1.7; opacity: 0;
+  transform: translateY(8px); transition: var(--transition);
+  max-height: 0; overflow: hidden;
+}
+.exp-card:hover .exp-desc { opacity: 1; transform: translateY(0); max-height: 80px; }
+.exp-arrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase;
+  color: var(--bamboo); margin-top: 14px; opacity: 0; transition: var(--transition);
+}
+.exp-card:hover .exp-arrow { opacity: 1; }
+
+/* DESTINATIONS MAP */
+.destinations { padding: 100px 60px; }
+
+.dest-map-wrap {
+  position: relative; background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius); overflow: hidden;
+  margin-bottom: 60px;
+}
+.dest-svg { width: 100%; height: auto; display: block; }
+
+.dest-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
+}
+.dest-card {
+  padding: 36px 28px; background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  transition: var(--transition); cursor: none;
+  position: relative; overflow: hidden;
+}
+.dest-card::after {
+  content: ''; position: absolute;
+  left: 0; top: 0; width: 3px; height: 100%;
+  background: var(--bamboo); transform: scaleY(0);
+  transform-origin: bottom; transition: transform 0.4s ease;
+}
+.dest-card:hover::after { transform: scaleY(1); }
+.dest-card:hover { background: var(--mist-strong); }
+.dest-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.5rem; font-weight: 300;
+  color: var(--border); margin-bottom: 16px;
+  line-height: 1;
+}
+.dest-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem; font-weight: 400;
+  margin-bottom: 8px; color: var(--bamboo-light);
+}
+.dest-region { font-size: 0.68rem; letter-spacing: 0.25em; color: var(--bamboo); text-transform: uppercase; margin-bottom: 14px; }
+.dest-desc { font-size: 0.8rem; font-weight: 200; color: var(--text-secondary); line-height: 1.8; }
+
+/* STAYS */
+.stays { padding: 100px 60px; }
+
+.stays-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 2px; }
+.stay-card {
+  position: relative; overflow: hidden; cursor: none;
+}
+.stay-card:first-child { grid-row: span 2; }
+.stay-img {
+  width: 100%; height: 100%; min-height: 280px;
+  object-fit: cover; display: block;
+}
+.stay-card-inner { position: relative; }
+.stay-visual {
+  width: 100%; aspect-ratio: 4/3;
+  position: relative; overflow: hidden;
+}
+.stay-visual .visual-bg {
+  width: 100%; height: 100%;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.stay-card:hover .visual-bg { transform: scale(1.06); }
+.stay-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(15,13,10,0.85) 0%, transparent 60%);
+}
+.stay-info { padding: 28px 24px; background: var(--bg-card); border: 1px solid var(--border-subtle); border-top: none; }
+.stay-type {
+  font-size: 0.6rem; letter-spacing: 0.35em; text-transform: uppercase;
+  color: var(--bamboo); margin-bottom: 8px;
+}
+.stay-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.3rem; font-weight: 400; margin-bottom: 10px;
+}
+.stay-features {
+  display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px;
+}
+.stay-feat {
+  font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase;
+  padding: 4px 10px; border: 1px solid var(--border-subtle);
+  color: var(--text-muted);
+}
+.stay-price {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem; color: var(--bamboo-light);
+}
+.stay-price span { font-family: 'Jost'; font-size: 0.65rem; color: var(--text-muted); font-weight: 200; }
+
+.stay-featured { grid-row: span 2; }
+.stay-featured-inner { height: 100%; position: relative; overflow: hidden; }
+.stay-featured-bg {
+  width: 100%; height: 100%; min-height: 560px;
+  background: linear-gradient(160deg, rgba(45,74,45,0.6), rgba(107,76,42,0.4), #0F0D0A);
+  display: flex; align-items: flex-end;
+  padding: 48px 40px;
+  transition: var(--transition);
+}
+.stay-featured:hover .stay-featured-bg { background: linear-gradient(160deg, rgba(45,74,45,0.7), rgba(107,76,42,0.5), #0F0D0A); }
+.stay-featured-content .stay-type { margin-bottom: 12px; }
+.stay-featured-content .stay-name { font-size: 2rem; margin-bottom: 16px; }
+.stay-featured-desc { font-size: 0.82rem; font-weight: 200; color: var(--text-secondary); line-height: 1.8; margin-bottom: 24px; }
+
+/* PACKAGES */
+.packages { padding: 100px 60px; background: var(--bg-secondary); }
+
+.pkg-tabs {
+  display: flex; gap: 2px; margin-bottom: 48px; border-bottom: 1px solid var(--border-subtle); padding-bottom: 0;
+}
+.pkg-tab {
+  font-size: 0.7rem; font-weight: 300; letter-spacing: 0.2em;
+  text-transform: uppercase; padding: 14px 32px;
+  background: none; border: none; border-bottom: 2px solid transparent;
+  color: var(--text-muted); cursor: none; transition: var(--transition);
+  margin-bottom: -1px;
+}
+.pkg-tab.active { border-bottom-color: var(--bamboo); color: var(--bamboo); }
+.pkg-tab:hover { color: var(--text-secondary); }
+
+.pkg-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+
+.pkg-card {
+  padding: 40px 36px;
+  background: var(--bg-card); border: 1px solid var(--border-subtle);
+  position: relative; overflow: hidden; transition: var(--transition); cursor: none;
+}
+.pkg-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(to right, transparent, var(--bamboo), transparent);
+  transform: scaleX(0); transition: transform 0.5s ease;
+}
+.pkg-card:hover::before, .pkg-card.featured::before { transform: scaleX(1); }
+.pkg-card.featured {
+  border-color: var(--bamboo-dark);
+  background: linear-gradient(160deg, rgba(200,169,110,0.06) 0%, transparent 60%);
+}
+.pkg-badge {
+  position: absolute; top: 20px; right: 20px;
+  font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase;
+  padding: 5px 12px; background: var(--bamboo); color: var(--charcoal);
+}
+.pkg-duration {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 3.5rem; font-weight: 300; color: var(--bamboo-dark);
+  line-height: 1; margin-bottom: 4px;
+}
+.pkg-unit { font-size: 0.68rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 20px; }
+.pkg-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5rem; font-weight: 400; margin-bottom: 12px;
+  color: var(--bamboo-light);
+}
+.pkg-tagline { font-size: 0.8rem; font-weight: 200; color: var(--text-secondary); line-height: 1.7; margin-bottom: 28px; }
+.pkg-includes { margin-bottom: 32px; }
+.pkg-includes-title {
+  font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--text-muted); margin-bottom: 14px;
+}
+.pkg-item {
+  display: flex; align-items: flex-start; gap: 10px;
+  font-size: 0.8rem; font-weight: 200; color: var(--text-secondary);
+  line-height: 1.6; margin-bottom: 8px;
+}
+.pkg-item::before {
+  content: '—'; color: var(--bamboo); flex-shrink: 0; margin-top: 2px;
+  font-size: 0.7rem;
+}
+.pkg-price {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.6rem; font-weight: 400; color: var(--text-primary);
+  border-top: 1px solid var(--border-subtle); padding-top: 20px;
+}
+.pkg-price span { font-family: 'Jost'; font-size: 0.65rem; color: var(--text-muted); font-weight: 200; }
+
+/* TRANSPORT */
+.transport { padding: 100px 60px; }
+
+.transport-inner {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 80px; align-items: center;
+}
+.transport-feature {
+  display: flex; gap: 20px; padding: 24px 0;
+  border-bottom: 1px solid var(--border-subtle);
+  transition: var(--transition);
+}
+.transport-feature:last-child { border-bottom: none; }
+.transport-feature:hover { padding-left: 8px; }
+.transport-icon { font-size: 1.6rem; flex-shrink: 0; margin-top: 2px; }
+.transport-feature-text h4 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem; font-weight: 400; margin-bottom: 6px;
+  color: var(--bamboo-light);
+}
+.transport-feature-text p { font-size: 0.8rem; font-weight: 200; color: var(--text-secondary); line-height: 1.7; }
+
+.transport-visual {
+  position: relative;
+  background: linear-gradient(135deg, rgba(45,74,45,0.3), rgba(107,76,42,0.2), rgba(200,169,110,0.1));
+  border: 1px solid var(--border-subtle);
+  padding: 60px 40px; text-align: center;
+  display: flex; flex-direction: column; align-items: center; gap: 20px;
+}
+.transport-visual::before {
+  content: ''; position: absolute; inset: 12px;
+  border: 1px solid var(--border); pointer-events: none;
+}
+.transport-headline {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.2rem; font-weight: 300; font-style: italic;
+  color: var(--bamboo-light); text-align: center;
+}
+
+/* CUISINE */
+.cuisine { padding: 100px 60px; background: var(--bg-secondary); }
+
+.cuisine-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 2px; margin-bottom: 60px;
+}
+.cuisine-card {
+  padding: 36px 28px; background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  transition: var(--transition); cursor: none;
+}
+.cuisine-card:hover { background: var(--mist-strong); transform: translateY(-4px); border-color: var(--bamboo); }
+.cuisine-emoji { font-size: 2.2rem; margin-bottom: 16px; }
+.cuisine-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.2rem; font-weight: 400; margin-bottom: 8px;
+  color: var(--bamboo-light);
+}
+.cuisine-desc { font-size: 0.78rem; font-weight: 200; color: var(--text-secondary); line-height: 1.8; }
+
+.cuisine-story {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+}
+.cuisine-story-visual {
+  background: linear-gradient(135deg, rgba(107,76,42,0.3), rgba(45,74,45,0.2));
+  border: 1px solid var(--border-subtle);
+  aspect-ratio: 4/3; display: flex; align-items: center; justify-content: center;
+  font-size: 6rem;
+}
+.cuisine-story-text { display: flex; flex-direction: column; gap: 20px; }
+.cuisine-story-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.2rem; font-weight: 300; line-height: 1.2;
+}
+.cuisine-story-title em { font-style: italic; color: var(--bamboo); }
+.cuisine-story-body { font-size: 0.85rem; font-weight: 200; color: var(--text-secondary); line-height: 2; }
+
+/* STORIES */
+.stories { padding: 100px 60px; }
+
+.stories-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 2px; }
+.story-featured {
+  position: relative; overflow: hidden; cursor: none;
+  background: linear-gradient(160deg, rgba(45,74,45,0.5), rgba(15,13,10,0.9));
+  padding: 60px 48px;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  min-height: 500px;
+  border: 1px solid var(--border-subtle);
+}
+.story-tag {
+  font-size: 0.58rem; letter-spacing: 0.35em; text-transform: uppercase;
+  background: var(--bamboo); color: var(--charcoal);
+  padding: 5px 12px; display: inline-block; margin-bottom: 20px;
+  align-self: flex-start;
+}
+.story-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.5rem; font-weight: 300; line-height: 1.15;
+  margin-bottom: 16px;
+}
+.story-excerpt { font-size: 0.82rem; font-weight: 200; color: var(--text-secondary); line-height: 1.8; margin-bottom: 28px; max-width: 500px; }
+.story-meta {
+  font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--text-muted); display: flex; gap: 20px; align-items: center;
+}
+.story-meta-dot { width: 3px; height: 3px; border-radius: 50%; background: var(--bamboo); }
+
+.stories-aside { display: flex; flex-direction: column; gap: 2px; }
+.story-mini {
+  padding: 28px 24px; background: var(--bg-card);
+  border: 1px solid var(--border-subtle); flex: 1;
+  cursor: none; transition: var(--transition);
+}
+.story-mini:hover { background: var(--mist-strong); border-color: var(--bamboo); }
+.story-mini .story-tag { margin-bottom: 12px; }
+.story-mini-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.2rem; font-weight: 400; margin-bottom: 10px;
+  line-height: 1.3;
+}
+.story-mini-excerpt { font-size: 0.75rem; font-weight: 200; color: var(--text-secondary); line-height: 1.7; }
+
+/* BOOKING */
+.booking { padding: 100px 60px; background: var(--bg-secondary); }
+
+.booking-inner {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+}
+.booking-form { display: flex; flex-direction: column; gap: 24px; }
+.form-group { display: flex; flex-direction: column; gap: 8px; }
+.form-label {
+  font-size: 0.62rem; letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--text-muted); font-weight: 300;
+}
+.form-input, .form-select, .form-textarea {
+  background: var(--bg-card); border: 1px solid var(--border-subtle);
+  color: var(--text-primary); padding: 14px 18px;
+  font-family: 'Jost'; font-size: 0.85rem; font-weight: 200;
+  transition: var(--transition); outline: none;
+}
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+  border-color: var(--bamboo);
+  background: var(--mist);
+}
+.form-input::placeholder, .form-textarea::placeholder { color: var(--text-muted); }
+.form-textarea { resize: vertical; min-height: 100px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.form-select { cursor: none; }
+.form-select option { background: var(--bg-primary); }
+
+.booking-info { display: flex; flex-direction: column; gap: 40px; }
+.booking-promise {
+  padding: 36px; background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+}
+.booking-promise h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem; font-weight: 400; margin-bottom: 16px;
+  color: var(--bamboo-light);
+}
+.promise-item {
+  display: flex; gap: 12px; padding: 12px 0;
+  border-bottom: 1px solid var(--border-subtle); font-size: 0.82rem;
+  color: var(--text-secondary); font-weight: 200; line-height: 1.6;
+}
+.promise-item:last-child { border-bottom: none; }
+.promise-icon { color: var(--bamboo); flex-shrink: 0; }
+
+.whatsapp-cta {
+  padding: 32px 36px;
+  background: linear-gradient(135deg, rgba(37,211,102,0.08), rgba(37,211,102,0.03));
+  border: 1px solid rgba(37,211,102,0.2);
+  display: flex; gap: 20px; align-items: center;
+}
+.whatsapp-icon { font-size: 2.5rem; flex-shrink: 0; }
+.whatsapp-text h4 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.2rem; font-weight: 400; margin-bottom: 8px;
+}
+.whatsapp-text p { font-size: 0.78rem; font-weight: 200; color: var(--text-secondary); line-height: 1.6; margin-bottom: 14px; }
+.btn-whatsapp {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: #25D366; color: #fff;
+  padding: 10px 24px; font-family: 'Jost';
+  font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase;
+  text-decoration: none; transition: var(--transition); cursor: none;
+}
+.btn-whatsapp:hover { background: #20ba58; transform: translateY(-1px); }
+
+/* WELLNESS SECTION */
+.wellness { padding: 100px 60px; }
+.wellness-inner { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+.wellness-card {
+  padding: 48px 36px; background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  transition: var(--transition); cursor: none;
+  position: relative; overflow: hidden;
+}
+.wellness-card::before {
+  content: ''; position: absolute;
+  top: -50%; left: -50%; width: 200%; height: 200%;
+  background: radial-gradient(circle, rgba(200,169,110,0.05), transparent 60%);
+  transform: scale(0); transition: transform 0.6s ease;
+}
+.wellness-card:hover::before { transform: scale(1); }
+.wellness-card:hover { border-color: var(--bamboo); }
+.wellness-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 4rem; font-weight: 300; color: var(--border);
+  line-height: 1; margin-bottom: 20px;
+}
+.wellness-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5rem; font-weight: 400; margin-bottom: 16px;
+  color: var(--bamboo-light);
+}
+.wellness-desc { font-size: 0.82rem; font-weight: 200; color: var(--text-secondary); line-height: 1.9; }
+
+/* REMOTE WORK */
+.remote { padding: 100px 60px; background: var(--bg-secondary); }
+.remote-inner {
+  background: linear-gradient(135deg, rgba(45,74,45,0.15), rgba(107,76,42,0.1));
+  border: 1px solid var(--border-subtle);
+  padding: 80px; display: grid; grid-template-columns: 1fr 1fr;
+  gap: 80px; align-items: center;
+  position: relative; overflow: hidden;
+}
+.remote-inner::before {
+  content: 'WORK FROM\nNATURE'; position: absolute;
+  right: -20px; top: 50%; transform: translateY(-50%);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 8rem; font-weight: 300; line-height: 0.9;
+  color: rgba(200,169,110,0.04); white-space: pre-line;
+  text-align: center; pointer-events: none;
+}
+.remote-features { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 32px; }
+.remote-feat {
+  padding: 20px; background: var(--mist);
+  border: 1px solid var(--border-subtle);
+}
+.remote-feat-icon { font-size: 1.5rem; margin-bottom: 10px; }
+.remote-feat-title { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 400; color: var(--bamboo-light); margin-bottom: 6px; }
+.remote-feat-desc { font-size: 0.75rem; font-weight: 200; color: var(--text-secondary); line-height: 1.6; }
+
+/* TESTIMONIALS */
+.testimonials { padding: 100px 60px; }
+.test-slider {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
+}
+.test-card {
+  padding: 48px 36px; background: var(--bg-card);
+  border: 1px solid var(--border-subtle); position: relative;
+}
+.test-card::before {
+  content: '"'; position: absolute; top: 20px; right: 28px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 6rem; color: var(--bamboo-dark); line-height: 1;
+  opacity: 0.4;
+}
+.test-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem; font-weight: 300; font-style: italic;
+  line-height: 1.7; color: var(--text-primary);
+  margin-bottom: 28px;
+}
+.test-author { display: flex; flex-direction: column; gap: 4px; }
+.test-name { font-size: 0.82rem; font-weight: 400; color: var(--bamboo-light); letter-spacing: 0.05em; }
+.test-origin { font-size: 0.68rem; font-weight: 200; color: var(--text-muted); letter-spacing: 0.15em; }
+.test-stars { color: var(--bamboo); font-size: 0.8rem; margin-bottom: 16px; }
+
+/* FOOTER */
+footer {
+  background: var(--charcoal); padding: 80px 60px 40px;
+  border-top: 1px solid var(--border-subtle);
+}
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 60px; margin-bottom: 60px; }
+.footer-brand .nav-logo { margin-bottom: 20px; display: inline-flex; }
+.footer-tagline { font-size: 0.8rem; font-weight: 200; color: var(--text-secondary); line-height: 1.8; max-width: 280px; margin-bottom: 24px; }
+.footer-social { display: flex; gap: 12px; }
+.social-link {
+  width: 36px; height: 36px; border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text-muted); font-size: 0.8rem; text-decoration: none;
+  transition: var(--transition); cursor: none;
+}
+.social-link:hover { border-color: var(--bamboo); color: var(--bamboo); }
+
+.footer-col h4 {
+  font-size: 0.62rem; letter-spacing: 0.35em; text-transform: uppercase;
+  color: var(--bamboo); margin-bottom: 20px; font-weight: 400;
+}
+.footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.footer-links a {
+  font-size: 0.8rem; font-weight: 200; color: var(--text-secondary);
+  text-decoration: none; transition: color 0.3s;
+  letter-spacing: 0.03em;
+}
+.footer-links a:hover { color: var(--bamboo); }
+
+.footer-bottom {
+  display: flex; justify-content: space-between; align-items: center;
+  padding-top: 32px; border-top: 1px solid var(--border-subtle);
+  font-size: 0.68rem; font-weight: 200; color: var(--text-muted);
+  letter-spacing: 0.1em;
+}
+
+/* SCROLL REVEAL */
+.reveal {
+  opacity: 0; transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.revealed { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* DIVIDER */
+.ornament {
+  display: flex; align-items: center; gap: 20px;
+  color: var(--bamboo-dark); font-size: 0.9rem;
+  margin: 0 auto 60px; justify-content: center;
+}
+.ornament-line { flex: 1; max-width: 80px; height: 1px; background: var(--bamboo-dark); }
+
+/* MOBILE MENU TOGGLE */
+.mobile-menu-btn {
+  display: none; background: none; border: none;
+  color: var(--text-primary); font-size: 1.2rem; cursor: none;
+}
+
+/* RESPONSIVE */
+@media (max-width: 1100px) {
+  nav { padding: 24px 30px; }
+  nav.scrolled { padding: 16px 30px; }
+  .nav-links { gap: 24px; }
+  .hero, .philosophy, .experiences, .destinations, .stays, .packages,
+  .transport, .cuisine, .stories, .booking, .wellness, .remote, .testimonials,
+  footer { padding-left: 30px; padding-right: 30px; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+}
+
+@media (max-width: 900px) {
+  .nav-links { display: none; }
+  .mobile-menu-btn { display: flex; }
+  .exp-grid { grid-template-columns: 1fr 1fr; }
+  .exp-card:first-child { grid-row: auto; }
+  .dest-grid { grid-template-columns: 1fr 1fr; }
+  .stays-grid { grid-template-columns: 1fr 1fr; }
+  .stay-featured { grid-row: auto; grid-column: span 2; }
+  .pkg-grid { grid-template-columns: 1fr; }
+  .cuisine-grid { grid-template-columns: 1fr 1fr; }
+  .test-slider { grid-template-columns: 1fr; }
+  .booking-inner, .transport-inner, .philosophy { grid-template-columns: 1fr; gap: 40px; }
+  .section-header { grid-template-columns: 1fr; }
+  .stories-grid { grid-template-columns: 1fr; }
+  .hero-visual { display: none; }
+  .hero { padding-bottom: 60px; }
+  .hero-title { font-size: 3rem; }
+  .remote-inner { grid-template-columns: 1fr; padding: 40px; gap: 40px; }
+  .wellness-inner { grid-template-columns: 1fr; }
+  .cuisine-story { grid-template-columns: 1fr; }
+}
+
+/* LIGHT THEME overrides */
+[data-theme="light"] .hero-bg {
+  background: radial-gradient(ellipse at 30% 60%, rgba(45,74,45,0.15) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 20%, rgba(107,76,42,0.12) 0%, transparent 50%),
+    linear-gradient(160deg, #e8e3d8 0%, #ede8dc 40%, #f0eadf 100%);
+}
+[data-theme="light"] .hero-title { color: var(--text-primary); }
+[data-theme="light"] footer { background: #E8E3D8; }
+[data-theme="light"] .pkg-card { background: rgba(255,255,255,0.5); }
+[data-theme="light"] .story-featured { background: linear-gradient(160deg, rgba(45,74,45,0.3), rgba(247,242,234,0.9)); }
+[data-theme="light"] .story-featured .story-title,
+[data-theme="light"] .story-featured .story-excerpt { color: var(--text-primary); }
+</style>
+</head>
+<body>
+
+<!-- CUSTOM CURSOR -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <a href="#" class="nav-logo">
+    Karbi Hills Living
+    <span>Diphu · Karbi Anglong · Northeast India</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#experiences">Experiences</a></li>
+    <li><a href="#destinations">Destinations</a></li>
+    <li><a href="#stays">Stays</a></li>
+    <li><a href="#packages">Packages</a></li>
+    <li><a href="#stories">Stories</a></li>
+    <li><a href="#booking">Enquire</a></li>
+  </ul>
+  <div class="nav-actions">
+    <select class="lang-select" id="langSelect" title="Language">
+      <option value="en">EN</option>
+      <option value="hi">हिन्दी</option>
+      <option value="as">অসমীয়া</option>
+      <option value="kb">Karbi</option>
+    </select>
+    <button class="theme-toggle" id="themeToggle" title="Toggle theme">☀</button>
+    <a href="#booking" class="btn-book">Begin Your Journey</a>
+    <button class="mobile-menu-btn">☰</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-particles" id="particles"></div>
+  <div class="bamboo-lines"></div>
+
+  <!-- Right visual panel -->
+  <div class="hero-visual reveal">
+    <div class="hero-img-frame">
+      <svg class="hero-landscape" viewBox="0 0 480 640" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style="stop-color:#0A1A0A;stop-opacity:1"/>
+            <stop offset="50%" style="stop-color:#1A2A1A;stop-opacity:1"/>
+            <stop offset="100%" style="stop-color:#2D4A2D;stop-opacity:1"/>
+          </linearGradient>
+          <linearGradient id="hillGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style="stop-color:#1A3A1A;stop-opacity:1"/>
+            <stop offset="100%" style="stop-color:#0F0D0A;stop-opacity:1"/>
+          </linearGradient>
+          <linearGradient id="fogGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style="stop-color:#4A6A4A;stop-opacity:0.3"/>
+            <stop offset="100%" style="stop-color:#4A6A4A;stop-opacity:0"/>
+          </linearGradient>
+          <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:#C8A96E;stop-opacity:0"/>
+            <stop offset="50%" style="stop-color:#C8A96E;stop-opacity:0.6"/>
+            <stop offset="100%" style="stop-color:#C8A96E;stop-opacity:0"/>
+          </linearGradient>
+          <filter id="blur1"><feGaussianBlur stdDeviation="3"/></filter>
+          <filter id="blur2"><feGaussianBlur stdDeviation="8"/></filter>
+        </defs>
+        <!-- Sky -->
+        <rect width="480" height="640" fill="url(#skyGrad)"/>
+        <!-- Stars -->
+        <g fill="#C8A96E" opacity="0.5">
+          <circle cx="50" cy="60" r="1.2"/>
+          <circle cx="120" cy="30" r="0.8"/>
+          <circle cx="200" cy="80" r="1"/>
+          <circle cx="300" cy="20" r="1.5"/>
+          <circle cx="380" cy="55" r="0.9"/>
+          <circle cx="440" cy="90" r="1.1"/>
+          <circle cx="30" cy="120" r="0.7"/>
+          <circle cx="160" cy="40" r="0.6"/>
+          <circle cx="420" cy="30" r="1.2"/>
+          <circle cx="260" cy="100" r="0.8"/>
+        </g>
+        <!-- Moon glow -->
+        <circle cx="380" cy="80" r="40" fill="#C8A96E" opacity="0.04" filter="url(#blur2)"/>
+        <circle cx="380" cy="80" r="20" fill="#C8A96E" opacity="0.08" filter="url(#blur1)"/>
+        <circle cx="380" cy="80" r="12" fill="#E2C99A" opacity="0.15"/>
+        <!-- Far hills -->
+        <path d="M0,360 Q80,280 160,300 Q240,260 320,290 Q400,250 480,280 L480,640 L0,640 Z" fill="#0F1F0F" opacity="0.8"/>
+        <!-- Mist layers -->
+        <path d="M0,340 Q120,310 240,330 Q360,310 480,325 Q480,360 0,360 Z" fill="url(#fogGrad)" filter="url(#blur1)"/>
+        <path d="M0,360 Q100,340 200,355 Q300,335 400,350 Q450,342 480,345 L480,380 L0,380 Z" fill="#2D4A2D" opacity="0.2" filter="url(#blur1)"/>
+        <!-- Main hills -->
+        <path d="M0,400 Q60,320 140,360 Q220,320 300,355 Q370,315 450,350 Q465,342 480,348 L480,640 L0,640 Z" fill="url(#hillGrad)"/>
+        <!-- Bamboo silhouettes -->
+        <g fill="#1A3A1A" opacity="0.9">
+          <!-- Left bamboo cluster -->
+          <rect x="20" y="380" width="5" height="260" rx="2"/>
+          <rect x="14" y="400" width="4" height="240" rx="2"/>
+          <rect x="28" y="370" width="4" height="270" rx="2"/>
+          <rect x="35" y="390" width="3" height="250" rx="2"/>
+          <!-- Bamboo nodes -->
+          <rect x="20" y="440" width="5" height="3"/>
+          <rect x="20" y="490" width="5" height="3"/>
+          <rect x="20" y="540" width="5" height="3"/>
+          <rect x="28" y="430" width="4" height="3"/>
+          <rect x="28" y="480" width="4" height="3"/>
+          <!-- Bamboo leaves left -->
+          <ellipse cx="20" cy="382" rx="25" ry="8" transform="rotate(-30 20 382)" opacity="0.8"/>
+          <ellipse cx="28" cy="372" rx="22" ry="7" transform="rotate(20 28 372)"/>
+          <ellipse cx="14" cy="402" rx="18" ry="6" transform="rotate(-20 14 402)"/>
+          <!-- Right bamboo cluster -->
+          <rect x="440" y="360" width="5" height="280" rx="2"/>
+          <rect x="450" y="380" width="4" height="260" rx="2"/>
+          <rect x="432" y="375" width="4" height="265" rx="2"/>
+          <rect x="460" y="370" width="3" height="270" rx="2"/>
+          <rect x="440" y="420" width="5" height="3"/>
+          <rect x="440" y="470" width="5" height="3"/>
+          <rect x="450" y="440" width="4" height="3"/>
+          <ellipse cx="440" cy="362" rx="28" ry="9" transform="rotate(25 440 362)" opacity="0.8"/>
+          <ellipse cx="460" cy="372" rx="24" ry="8" transform="rotate(-15 460 372)"/>
+        </g>
+        <!-- Ground fog -->
+        <rect x="0" y="580" width="480" height="60" fill="#2D4A2D" opacity="0.15" filter="url(#blur2)"/>
+        <!-- Firefly particles -->
+        <g fill="#C8A96E">
+          <circle cx="100" cy="480" r="2" opacity="0.8">
+            <animate attributeName="opacity" values="0.8;0.1;0.8" dur="2s" repeatCount="indefinite"/>
+          </circle>
+          <circle cx="200" cy="440" r="1.5" opacity="0.6">
+            <animate attributeName="opacity" values="0.6;0.2;0.6" dur="3s" repeatCount="indefinite"/>
+          </circle>
+          <circle cx="320" cy="460" r="2" opacity="0.7">
+            <animate attributeName="opacity" values="0.7;0.1;0.7" dur="2.5s" repeatCount="indefinite"/>
+          </circle>
+          <circle cx="150" cy="520" r="1" opacity="0.5">
+            <animate attributeName="opacity" values="0.5;0.8;0.5" dur="1.8s" repeatCount="indefinite"/>
+          </circle>
+          <circle cx="380" cy="500" r="1.5" opacity="0.4">
+            <animate attributeName="opacity" values="0.4;0.9;0.4" dur="2.2s" repeatCount="indefinite"/>
+          </circle>
+        </g>
+        <!-- Golden horizon glow -->
+        <rect x="0" y="350" width="480" height="20" fill="url(#goldGrad)"/>
+        <!-- Cottage silhouette -->
+        <g transform="translate(200, 450)" fill="#0A180A">
+          <rect x="0" y="30" width="70" height="40"/>
+          <polygon points="0,30 35,-5 70,30"/>
+          <rect x="25" y="45" width="20" height="25"/>
+          <!-- Warm window light -->
+          <rect x="8" y="38" width="12" height="10" fill="#C8A96E" opacity="0.4"/>
+          <rect x="50" y="38" width="12" height="10" fill="#C8A96E" opacity="0.3"/>
+        </g>
+        <!-- Overlay vignette -->
+        <radialGradient id="vigGrad" cx="50%" cy="50%" r="70%">
+          <stop offset="0%" style="stop-color:transparent"/>
+          <stop offset="100%" style="stop-color:#000000;stop-opacity:0.5"/>
+        </radialGradient>
+        <rect width="480" height="640" fill="url(#vigGrad)"/>
+      </svg>
+    </div>
+  </div>
+
+  <div class="hero-content">
+    <p class="hero-eyebrow reveal">Karbi Anglong · Northeast India</p>
+    <h1 class="hero-title reveal reveal-delay-1">
+      Where the <em>Hills</em><br>Hold<br>Ancient <em>Secrets</em>
+    </h1>
+    <p class="hero-sub reveal reveal-delay-2">
+      Curated luxury experiences deep in Northeast India — where bamboo forests meet Karbi culture, sacred rivers run still, and time bends toward the essential.
+    </p>
+    <div class="hero-ctas reveal reveal-delay-3">
+      <a href="#experiences" class="btn-primary">Explore Experiences</a>
+      <a href="#packages" class="btn-ghost">View Packages</a>
+    </div>
+  </div>
+
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <div class="hero-scroll-line"></div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-strip">
+  <div class="marquee-track" id="marqueeTrack">
+    <span>Diphu</span><span class="dot">·</span>
+    <span>Singhason Hills</span><span class="dot">·</span>
+    <span>Kaziranga</span><span class="dot">·</span>
+    <span>Haflong</span><span class="dot">·</span>
+    <span>Tea Gardens</span><span class="dot">·</span>
+    <span>Umrangso</span><span class="dot">·</span>
+    <span>Tribal Villages</span><span class="dot">·</span>
+    <span>Siloni</span><span class="dot">·</span>
+    <span>Panimore</span><span class="dot">·</span>
+    <span>Meghalaya Routes</span><span class="dot">·</span>
+    <span>Bamboo Forests</span><span class="dot">·</span>
+    <span>Sacred Waterfalls</span><span class="dot">·</span>
+    <span>Eco Trails</span><span class="dot">·</span>
+    <!-- repeat for seamless loop -->
+    <span>Diphu</span><span class="dot">·</span>
+    <span>Singhason Hills</span><span class="dot">·</span>
+    <span>Kaziranga</span><span class="dot">·</span>
+    <span>Haflong</span><span class="dot">·</span>
+    <span>Tea Gardens</span><span class="dot">·</span>
+    <span>Umrangso</span><span class="dot">·</span>
+    <span>Tribal Villages</span><span class="dot">·</span>
+    <span>Siloni</span><span class="dot">·</span>
+    <span>Panimore</span><span class="dot">·</span>
+    <span>Meghalaya Routes</span><span class="dot">·</span>
+    <span>Bamboo Forests</span><span class="dot">·</span>
+    <span>Sacred Waterfalls</span><span class="dot">·</span>
+    <span>Eco Trails</span><span class="dot">·</span>
+  </div>
+</div>
+
+<!-- PHILOSOPHY -->
+<section class="philosophy">
+  <div>
+    <p class="section-eyebrow reveal">Our Philosophy</p>
+    <blockquote class="philosophy-quote reveal reveal-delay-1">
+      "Slow down. The forest has been waiting to speak to you."
+    </blockquote>
+    <p class="philosophy-text reveal reveal-delay-2">
+      Karbi Hills Living is not a travel agency — it is a way of experiencing Northeast India as it truly is. Born in Diphu, rooted in Karbi culture, and committed to the kind of travel that leaves you changed.
+    </p>
+    <p class="philosophy-text reveal reveal-delay-2">
+      We curate experiences where luxury means waking to birdsong, dining on bamboo-smoked river fish, and having a Karbi elder share stories no guidebook carries. Every detail — from your airport pickup to your last morning chai — is handled with quiet precision.
+    </p>
+    <a href="#experiences" class="btn-ghost reveal reveal-delay-3" style="display:inline-block; margin-top:16px;">Discover Our Way</a>
+  </div>
+  <div class="philosophy-visual reveal reveal-delay-2">
+    <div class="philosophy-grid">
+      <div class="phil-card">
+        <div class="phil-icon">🎋</div>
+        <div class="phil-label">Eco-Luxury</div>
+        <div class="phil-sub">Bamboo-modern · Forest-inspired</div>
+      </div>
+      <div class="phil-card">
+        <div class="phil-icon">🏺</div>
+        <div class="phil-label">Karbi Culture</div>
+        <div class="phil-sub">Authentic · Living traditions</div>
+      </div>
+      <div class="phil-card">
+        <div class="phil-icon">🌿</div>
+        <div class="phil-label">Slow Travel</div>
+        <div class="phil-sub">Presence over pace</div>
+      </div>
+      <div class="phil-card">
+        <div class="phil-icon">✦</div>
+        <div class="phil-label">Bespoke Care</div>
+        <div class="phil-sub">Every detail curated</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCES -->
+<section class="experiences" id="experiences">
+  <div class="section-header reveal">
+    <div>
+      <p class="section-eyebrow">Experience Categories</p>
+      <h2 class="section-title">Four Paths Into<br>the <em>Northeast</em></h2>
+    </div>
+    <p class="section-desc">Each category is a doorway. Nature, culture, adventure, and wellness — together they form the complete Karbi Hills experience, designed to move you in ways you didn't expect.</p>
+  </div>
+
+  <div class="exp-categories">
+    <button class="exp-cat active">All Experiences</button>
+    <button class="exp-cat">🌿 Nature</button>
+    <button class="exp-cat">🏺 Culture</button>
+    <button class="exp-cat">⛰ Adventure</button>
+    <button class="exp-cat">🧘 Wellness</button>
+  </div>
+
+  <div class="exp-grid reveal">
+    <!-- Large card -->
+    <div class="exp-card" style="min-height:580px;">
+      <div class="exp-card-bg" style="background: linear-gradient(160deg, #0A1A0A, #1A3A1A 40%, #2D4A2D); height:100%; position:relative;">
+        <!-- Forest SVG -->
+        <svg viewBox="0 0 300 580" style="width:100%;height:100%;position:absolute;inset:0;" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="forestGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" style="stop-color:#0A1A0A"/>
+              <stop offset="100%" style="stop-color:#2D4A2D"/>
+            </linearGradient>
+          </defs>
+          <rect width="300" height="580" fill="url(#forestGrad)"/>
+          <!-- Tree silhouettes -->
+          <g fill="#0F2A0F">
+            <polygon points="150,50 120,180 180,180" opacity="0.9"/>
+            <polygon points="150,80 105,220 195,220" opacity="0.8"/>
+            <polygon points="80,100 50,240 110,240" opacity="0.9"/>
+            <polygon points="220,90 190,230 250,230"/>
+            <polygon points="40,150 10,300 70,300" opacity="0.7"/>
+            <polygon points="260,140 230,290 290,290" opacity="0.8"/>
+            <rect x="145" y="180" width="10" height="400"/>
+            <rect x="76" y="240" width="8" height="340"/>
+            <rect x="215" y="230" width="8" height="350"/>
+          </g>
+          <!-- Mist -->
+          <rect x="0" y="400" width="300" height="80" fill="#2D4A2D" opacity="0.2"/>
+          <!-- Light rays -->
+          <path d="M150,0 L100,300" stroke="#C8A96E" stroke-width="0.5" opacity="0.1"/>
+          <path d="M150,0 L200,280" stroke="#C8A96E" stroke-width="0.5" opacity="0.08"/>
+          <path d="M150,0 L60,320" stroke="#C8A96E" stroke-width="0.3" opacity="0.06"/>
+        </svg>
+      </div>
+      <div class="exp-card-overlay"></div>
+      <div class="exp-card-content">
+        <span class="exp-tag">Nature & Ecology</span>
+        <h3 class="exp-name">Forest Immersion</h3>
+        <p class="exp-desc">Dawn walks through sacred bamboo groves, guided by Karbi forest-keepers who know every call, every track, every story the land tells.</p>
+        <span class="exp-arrow">Explore → </span>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="exp-card">
+      <div class="exp-card-bg" style="background: linear-gradient(160deg, #2A1A0A, #4A2A10, #6B4C2A); height:100%; position:relative;">
+        <svg viewBox="0 0 200 300" style="width:100%;height:100%;position:absolute;inset:0;" xmlns="http://www.w3.org/2000/svg">
+          <rect width="200" height="300" fill="#2A1508"/>
+          <!-- Tribal pattern -->
+          <g fill="none" stroke="#C8A96E" stroke-width="0.8" opacity="0.25">
+            <path d="M0,50 Q50,30 100,50 Q150,70 200,50"/>
+            <path d="M0,100 Q50,80 100,100 Q150,120 200,100"/>
+            <path d="M0,150 Q50,130 100,150 Q150,170 200,150"/>
+            <polygon points="100,40 120,80 80,80" opacity="0.5"/>
+            <polygon points="60,120 80,160 40,160" opacity="0.4"/>
+            <polygon points="140,110 160,150 120,150" opacity="0.4"/>
+            <circle cx="100" cy="200" r="40" opacity="0.15"/>
+            <circle cx="100" cy="200" r="25" opacity="0.2"/>
+            <circle cx="100" cy="200" r="10" opacity="0.3"/>
+          </g>
+          <g fill="#C8A96E" opacity="0.2">
+            <rect x="90" y="190" width="20" height="110"/>
+            <polygon points="100,165 115,185 85,185"/>
+          </g>
+        </svg>
+      </div>
+      <div class="exp-card-overlay"></div>
+      <div class="exp-card-content">
+        <span class="exp-tag">Culture & Heritage</span>
+        <h3 class="exp-name">Karbi Rituals</h3>
+        <p class="exp-desc">Live cultural ceremonies, weaving workshops, and oral history evenings with tribal elders.</p>
+        <span class="exp-arrow">Explore →</span>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="exp-card">
+      <div class="exp-card-bg" style="background: linear-gradient(160deg, #0A1A20, #0F2A3A, #1A4A5A); height:100%; position:relative;">
+        <svg viewBox="0 0 200 300" style="width:100%;height:100%;position:absolute;inset:0;" xmlns="http://www.w3.org/2000/svg">
+          <rect width="200" height="300" fill="#0A1520"/>
+          <!-- Mountain/waterfall -->
+          <path d="M0,200 Q50,120 100,160 Q150,100 200,140 L200,300 L0,300 Z" fill="#0F2A3A" opacity="0.9"/>
+          <path d="M100,160 Q100,200 95,240 Q95,260 100,280" stroke="#C8A96E" stroke-width="1.5" fill="none" opacity="0.4"/>
+          <path d="M100,160 Q103,180 98,220 Q96,250 102,280" stroke="#C8A96E" stroke-width="1" fill="none" opacity="0.3"/>
+          <!-- Stars -->
+          <circle cx="30" cy="40" r="1" fill="#C8A96E" opacity="0.6"/>
+          <circle cx="80" cy="20" r="0.8" fill="#C8A96E" opacity="0.5"/>
+          <circle cx="160" cy="35" r="1.2" fill="#C8A96E" opacity="0.7"/>
+          <circle cx="170" cy="70" r="0.9" fill="#C8A96E" opacity="0.4"/>
+        </svg>
+      </div>
+      <div class="exp-card-overlay"></div>
+      <div class="exp-card-content">
+        <span class="exp-tag">Adventure</span>
+        <h3 class="exp-name">Hidden Trails</h3>
+        <p class="exp-desc">Trek to sacred waterfalls, remote river camps, and summits known only to Karbi hunters.</p>
+        <span class="exp-arrow">Explore →</span>
+      </div>
+    </div>
+
+    <!-- Card 4 -->
+    <div class="exp-card">
+      <div class="exp-card-bg" style="background: linear-gradient(160deg, #1A2A1A, #2A3A2A, #3D6B3D); height:100%; position:relative;">
+        <svg viewBox="0 0 200 300" style="width:100%;height:100%;position:absolute;inset:0;" xmlns="http://www.w3.org/2000/svg">
+          <rect width="200" height="300" fill="#151F15"/>
+          <!-- Lotus / mandala -->
+          <g transform="translate(100,150)" fill="none" stroke="#C8A96E" stroke-width="0.8" opacity="0.3">
+            <ellipse rx="60" ry="20" transform="rotate(0)"/>
+            <ellipse rx="60" ry="20" transform="rotate(45)"/>
+            <ellipse rx="60" ry="20" transform="rotate(90)"/>
+            <ellipse rx="60" ry="20" transform="rotate(135)"/>
+            <circle r="25"/>
+            <circle r="10"/>
+          </g>
+          <circle cx="100" cy="150" r="5" fill="#C8A96E" opacity="0.5"/>
+          <!-- Tea leaves silhouette -->
+          <g fill="#2D4A2D" opacity="0.5">
+            <ellipse cx="50" cy="260" rx="30" ry="8" transform="rotate(-20 50 260)"/>
+            <ellipse cx="150" cy="250" rx="28" ry="7" transform="rotate(15 150 250)"/>
+            <ellipse cx="100" cy="270" rx="25" ry="7" transform="rotate(-5 100 270)"/>
+          </g>
+        </svg>
+      </div>
+      <div class="exp-card-overlay"></div>
+      <div class="exp-card-content">
+        <span class="exp-tag">Wellness</span>
+        <h3 class="exp-name">Forest Healing</h3>
+        <p class="exp-desc">Ayurvedic rituals, forest bathing, meditation, and indigenous healing practices.</p>
+        <span class="exp-arrow">Explore →</span>
+      </div>
+    </div>
+
+    <!-- Card 5 -->
+    <div class="exp-card">
+      <div class="exp-card-bg" style="background: linear-gradient(160deg, #1A0A0A, #3A1A0A, #6B3A10); height:100%; position:relative;">
+        <svg viewBox="0 0 200 300" style="width:100%;height:100%;position:absolute;inset:0;" xmlns="http://www.w3.org/2000/svg">
+          <rect width="200" height="300" fill="#1A0A05"/>
+          <!-- Fire/cooking -->
+          <g fill="#C8A96E" opacity="0.3">
+            <path d="M90,200 Q100,170 110,200 Q120,170 115,195 Q105,175 100,200 Z"/>
+            <path d="M95,210 Q100,185 105,210 Q110,190 108,205 Q103,190 100,210 Z" opacity="0.5"/>
+          </g>
+          <!-- Bamboo container -->
+          <g fill="#2A1A08">
+            <rect x="80" y="200" width="40" height="60" rx="5"/>
+            <ellipse cx="100" cy="200" rx="20" ry="5"/>
+          </g>
+          <rect x="85" y="210" width="30" height="3" fill="#C8A96E" opacity="0.2"/>
+          <rect x="85" y="225" width="30" height="3" fill="#C8A96E" opacity="0.15"/>
+          <rect x="85" y="240" width="30" height="3" fill="#C8A96E" opacity="0.1"/>
+        </svg>
+      </div>
+      <div class="exp-card-overlay"></div>
+      <div class="exp-card-content">
+        <span class="exp-tag">Cuisine & Culture</span>
+        <h3 class="exp-name">Bamboo Kitchen</h3>
+        <p class="exp-desc">Hands-on cooking with Karbi grandmothers — bamboo tube rice, smoked pork, fermented greens.</p>
+        <span class="exp-arrow">Explore →</span>
+      </div>
+    </div>
+
+    <!-- Card 6 -->
+    <div class="exp-card">
+      <div class="exp-card-bg" style="background: linear-gradient(160deg, #0A1520, #102030, #1A3A4A); height:100%; position:relative;">
+        <svg viewBox="0 0 200 300" style="width:100%;height:100%;position:absolute;inset:0;" xmlns="http://www.w3.org/2000/svg">
+          <rect width="200" height="300" fill="#0A1015"/>
+          <!-- Tea garden rows -->
+          <g fill="#1A3A1A" opacity="0.7">
+            <path d="M0,200 Q40,190 80,200 Q120,210 160,200 Q180,195 200,200 L200,220 Q180,215 160,220 Q120,230 80,220 Q40,210 0,220 Z"/>
+            <path d="M0,240 Q40,230 80,240 Q120,250 160,240 Q180,235 200,240 L200,260 Q180,255 160,260 Q120,270 80,260 Q40,250 0,260 Z"/>
+            <path d="M0,280 Q40,270 80,280 Q120,290 160,280 Q180,275 200,280 L200,300 L0,300 Z"/>
+          </g>
+          <!-- Mist over tea -->
+          <rect x="0" y="170" width="200" height="40" fill="#2D4A2D" opacity="0.15"/>
+          <!-- Worker silhouette -->
+          <g fill="#0A1A0A">
+            <circle cx="100" cy="175" r="6"/>
+            <path d="M90,180 Q100,190 110,180 L112,220 L88,220 Z"/>
+            <!-- Basket on back -->
+            <ellipse cx="108" cy="185" rx="10" ry="8" transform="rotate(-20 108 185)"/>
+          </g>
+        </svg>
+      </div>
+      <div class="exp-card-overlay"></div>
+      <div class="exp-card-content">
+        <span class="exp-tag">Nature & Culture</span>
+        <h3 class="exp-name">Tea Garden Dawn</h3>
+        <p class="exp-desc">Walk through mist-covered Assam tea estates at sunrise, then taste single-estate teas direct from the garden.</p>
+        <span class="exp-arrow">Explore →</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DESTINATIONS -->
+<section class="destinations" id="destinations">
+  <div class="section-header reveal">
+    <div>
+      <p class="section-eyebrow">Explore the Region</p>
+      <h2 class="section-title">Hidden Places,<br><em>Real Stories</em></h2>
+    </div>
+    <p class="section-desc">From the misty heights of Singhason Hills to the sacred stillness of Haflong Lake — every destination we take you to has been chosen for its depth, not its fame.</p>
+  </div>
+
+  <!-- Stylized map -->
+  <div class="dest-map-wrap reveal">
+    <svg class="dest-svg" viewBox="0 0 1200 400" xmlns="http://www.w3.org/2000/svg" style="background:#0F0D0A;">
+      <defs>
+        <linearGradient id="mapGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color:#0F1A0F;stop-opacity:1"/>
+          <stop offset="100%" style="stop-color:#1A0F0A;stop-opacity:1"/>
+        </linearGradient>
+        <filter id="glow"><feGaussianBlur stdDeviation="3" result="coloredBlur"/><feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+      </defs>
+      <rect width="1200" height="400" fill="url(#mapGrad)"/>
+      <!-- Terrain shapes -->
+      <path d="M0,200 Q150,140 300,180 Q450,130 600,160 Q750,120 900,155 Q1050,130 1200,150 L1200,400 L0,400 Z" fill="#1A2A1A" opacity="0.5"/>
+      <path d="M0,250 Q200,200 400,230 Q600,200 800,220 Q1000,195 1200,215 L1200,400 L0,400 Z" fill="#0F1A0F" opacity="0.6"/>
+      <!-- Rivers -->
+      <path d="M200,50 Q300,150 250,250 Q230,300 280,400" stroke="#1A3A5A" stroke-width="3" fill="none" opacity="0.6"/>
+      <path d="M600,100 Q650,180 620,280 Q600,340 640,400" stroke="#1A3A5A" stroke-width="2" fill="none" opacity="0.5"/>
+      <path d="M0,300 Q300,280 600,295 Q900,275 1200,290" stroke="#1A3A5A" stroke-width="4" fill="none" opacity="0.4"/>
+      <!-- Grid lines -->
+      <g stroke="rgba(200,169,110,0.06)" stroke-width="1">
+        <line x1="0" y1="100" x2="1200" y2="100"/>
+        <line x1="0" y1="200" x2="1200" y2="200"/>
+        <line x1="0" y1="300" x2="1200" y2="300"/>
+        <line x1="200" y1="0" x2="200" y2="400"/>
+        <line x1="400" y1="0" x2="400" y2="400"/>
+        <line x1="600" y1="0" x2="600" y2="400"/>
+        <line x1="800" y1="0" x2="800" y2="400"/>
+        <line x1="1000" y1="0" x2="1000" y2="400"/>
+      </g>
+      <!-- Route lines -->
+      <path d="M180,280 Q300,220 420,200 Q520,185 600,190 Q700,185 780,220 Q860,195 960,210" stroke="#C8A96E" stroke-width="1.5" fill="none" stroke-dasharray="8,4" opacity="0.35"/>
+      <!-- Destination markers -->
+      <!-- Diphu -->
+      <g transform="translate(180, 280)" filter="url(#glow)">
+        <circle r="8" fill="#C8A96E" opacity="0.9"/>
+        <circle r="16" fill="none" stroke="#C8A96E" stroke-width="1" opacity="0.4"/>
+        <circle r="24" fill="none" stroke="#C8A96E" stroke-width="0.5" opacity="0.2">
+          <animate attributeName="r" values="16;28;16" dur="3s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0.3;0;0.3" dur="3s" repeatCount="indefinite"/>
+        </circle>
+        <text y="-20" text-anchor="middle" fill="#C8A96E" font-family="'Jost', sans-serif" font-size="11" font-weight="300" letter-spacing="2">DIPHU</text>
+        <text y="-8" text-anchor="middle" fill="#C8A96E" font-family="'Jost', sans-serif" font-size="8" opacity="0.6">HQ</text>
+      </g>
+      <!-- Singhason Hills -->
+      <g transform="translate(300, 185)">
+        <circle r="5" fill="#C8A96E" opacity="0.7"/>
+        <circle r="10" fill="none" stroke="#C8A96E" stroke-width="0.8" opacity="0.3"/>
+        <text y="-14" text-anchor="middle" fill="#E2C99A" font-family="'Jost', sans-serif" font-size="9" font-weight="200" letter-spacing="1.5">SINGHASON HILLS</text>
+      </g>
+      <!-- Kaziranga -->
+      <g transform="translate(420, 200)">
+        <circle r="6" fill="#C8A96E" opacity="0.8"/>
+        <circle r="12" fill="none" stroke="#C8A96E" stroke-width="1" opacity="0.3"/>
+        <text y="-16" text-anchor="middle" fill="#E2C99A" font-family="'Jost', sans-serif" font-size="9" font-weight="200" letter-spacing="1.5">KAZIRANGA</text>
+      </g>
+      <!-- Haflong -->
+      <g transform="translate(600, 190)">
+        <circle r="5" fill="#C8A96E" opacity="0.7"/>
+        <text y="-14" text-anchor="middle" fill="#E2C99A" font-family="'Jost', sans-serif" font-size="9" font-weight="200" letter-spacing="1.5">HAFLONG</text>
+      </g>
+      <!-- Umrangso -->
+      <g transform="translate(700, 215)">
+        <circle r="4" fill="#C8A96E" opacity="0.6"/>
+        <text y="-12" text-anchor="middle" fill="#E2C99A" font-family="'Jost', sans-serif" font-size="8" font-weight="200" letter-spacing="1">UMRANGSO</text>
+      </g>
+      <!-- Siloni -->
+      <g transform="translate(780, 222)">
+        <circle r="4" fill="#C8A96E" opacity="0.6"/>
+        <text y="-12" text-anchor="middle" fill="#E2C99A" font-family="'Jost', sans-serif" font-size="8" font-weight="200" letter-spacing="1">SILONI</text>
+      </g>
+      <!-- Panimore -->
+      <g transform="translate(860, 198)">
+        <circle r="4" fill="#C8A96E" opacity="0.6"/>
+        <text y="-12" text-anchor="middle" fill="#E2C99A" font-family="'Jost', sans-serif" font-size="8" font-weight="200" letter-spacing="1">PANIMORE</text>
+      </g>
+      <!-- Meghalaya -->
+      <g transform="translate(960, 210)">
+        <circle r="5" fill="#C8A96E" opacity="0.7"/>
+        <text y="-14" text-anchor="middle" fill="#E2C99A" font-family="'Jost', sans-serif" font-size="9" font-weight="200" letter-spacing="1.5">MEGHALAYA →</text>
+      </g>
+      <!-- Compass -->
+      <g transform="translate(1140, 50)">
+        <circle r="22" fill="none" stroke="#C8A96E" stroke-width="0.5" opacity="0.4"/>
+        <text y="-26" text-anchor="middle" fill="#C8A96E" font-size="9" font-family="'Jost', sans-serif" opacity="0.6">N</text>
+        <line x1="0" y1="-18" x2="0" y2="-8" stroke="#C8A96E" stroke-width="1" opacity="0.5"/>
+        <line x1="0" y1="8" x2="0" y2="18" stroke="#C8A96E" stroke-width="1" opacity="0.3"/>
+      </g>
+      <!-- Region label -->
+      <text x="600" y="370" text-anchor="middle" fill="rgba(200,169,110,0.15)" font-family="'Cormorant Garamond', serif" font-size="60" font-weight="300">KARBI ANGLONG</text>
+    </svg>
+  </div>
+
+  <div class="dest-grid">
+    <div class="dest-card reveal">
+      <div class="dest-num">01</div>
+      <div class="dest-name">Diphu</div>
+      <div class="dest-region">Base · Karbi Anglong</div>
+      <p class="dest-desc">Our home. The cultural heart of Karbi Anglong — alive with markets, music, and the warmest welcomes in all of Northeast India.</p>
+    </div>
+    <div class="dest-card reveal reveal-delay-1">
+      <div class="dest-num">02</div>
+      <div class="dest-name">Singhason Hills</div>
+      <div class="dest-region">Elevation · Karbi Anglong</div>
+      <p class="dest-desc">Sacred ridgelines with panoramic forest canopy views. Home to rare flora, misty mornings, and age-old Karbi ceremonial grounds.</p>
+    </div>
+    <div class="dest-card reveal reveal-delay-2">
+      <div class="dest-num">03</div>
+      <div class="dest-name">Kaziranga</div>
+      <div class="dest-region">Wildlife · Assam</div>
+      <p class="dest-desc">UNESCO World Heritage Site. One-horned rhinos, wild elephants, and Bengal tigers in floodplain grasslands — approached in quiet, mindful luxury.</p>
+    </div>
+    <div class="dest-card reveal">
+      <div class="dest-num">04</div>
+      <div class="dest-name">Haflong</div>
+      <div class="dest-region">Lake Country · Dima Hasao</div>
+      <p class="dest-desc">Assam's only hill station. Pristine Haflong Lake, orchid forests, and Dimasa tribal culture wrapped in cloud and stillness.</p>
+    </div>
+    <div class="dest-card reveal reveal-delay-1">
+      <div class="dest-num">05</div>
+      <div class="dest-name">Umrangso</div>
+      <div class="dest-region">River & Lake · Karbi Anglong</div>
+      <p class="dest-desc">Langhin Lake's turquoise waters, power station history, and river-side camping spots that few outsiders have ever seen.</p>
+    </div>
+    <div class="dest-card reveal reveal-delay-2">
+      <div class="dest-num">06</div>
+      <div class="dest-name">Meghalaya Routes</div>
+      <div class="dest-region">Living Roots · Northeast</div>
+      <p class="dest-desc">Extended journeys into Meghalaya's living root bridges, sacred groves, and Khasi-Jaintia highlands — accessed from our Karbi base.</p>
+    </div>
+  </div>
+</section>
+
+<!-- STAYS -->
+<section class="stays" id="stays">
+  <div class="section-header reveal">
+    <div>
+      <p class="section-eyebrow">Where You Rest</p>
+      <h2 class="section-title">Accommodations<br>as <em>Beautiful</em> as the Land</h2>
+    </div>
+    <p class="section-desc">Bamboo cottages, eco villas, luxury canvas tents by the river — each stay is chosen for comfort, location, and the quality of silence it offers.</p>
+  </div>
+
+  <div class="stays-grid reveal">
+    <div class="stay-card stay-featured">
+      <div class="stay-featured-inner">
+        <div class="stay-featured-bg">
+          <div class="stay-featured-content">
+            <span class="stay-type">Signature Stay</span>
+            <h3 class="stay-name">Karbi Forest Villa</h3>
+            <p class="stay-featured-desc">A hand-crafted bamboo-and-stone villa elevated above the forest floor, with a private deck, outdoor rain shower, and personal butler service. Waking here, with morning fog rolling through the tree canopy, is an experience that reframes everything.</p>
+            <div class="stay-features">
+              <span class="stay-feat">Private Deck</span>
+              <span class="stay-feat">Forest View</span>
+              <span class="stay-feat">Butler Service</span>
+              <span class="stay-feat">Bamboo Architecture</span>
+            </div>
+            <div class="stay-price">From ₹18,000 <span>per night, all-inclusive</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stay-card">
+      <div class="stay-visual">
+        <svg viewBox="0 0 300 220" class="visual-bg" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
+          <rect width="300" height="220" fill="#0A1A2A"/>
+          <path d="M0,140 Q75,110 150,130 Q225,110 300,125 L300,220 L0,220 Z" fill="#0A1A1A" opacity="0.8"/>
+          <!-- Tent -->
+          <g transform="translate(120,95)">
+            <polygon points="30,-50 60,30 0,30" fill="#2D4A2D"/>
+            <polygon points="30,-50 60,30 30,10" fill="#1A2A1A"/>
+            <rect x="10" y="30" width="40" height="20" fill="#1A2A1A"/>
+            <rect x="22" y="35" width="16" height="15" fill="#C8A96E" opacity="0.3"/>
+          </g>
+          <!-- Stars/fireflies -->
+          <circle cx="50" cy="40" r="1" fill="#C8A96E" opacity="0.7"/>
+          <circle cx="220" cy="30" r="1.2" fill="#C8A96E" opacity="0.6"/>
+          <circle cx="280" cy="60" r="0.8" fill="#C8A96E" opacity="0.5"/>
+          <circle cx="150" cy="20" r="1" fill="#C8A96E" opacity="0.8"/>
+        </svg>
+        <div class="stay-overlay"></div>
+      </div>
+      <div class="stay-info">
+        <span class="stay-type">Riverside</span>
+        <h3 class="stay-name">Luxury Safari Tent</h3>
+        <div class="stay-features">
+          <span class="stay-feat">River Sound</span>
+          <span class="stay-feat">Canvas & Teak</span>
+          <span class="stay-feat">Stargazing</span>
+        </div>
+        <div class="stay-price">From ₹9,500 <span>/ night</span></div>
+      </div>
+    </div>
+
+    <div class="stay-card">
+      <div class="stay-visual">
+        <svg viewBox="0 0 300 220" class="visual-bg" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
+          <rect width="300" height="220" fill="#1A2A0A"/>
+          <!-- Bamboo cottage -->
+          <g transform="translate(90, 80)">
+            <rect x="0" y="40" width="120" height="70" fill="#1A3A0A"/>
+            <polygon points="0,40 60,5 120,40" fill="#2D4A1A"/>
+            <!-- Bamboo siding -->
+            <g stroke="#0A2A0A" stroke-width="2" opacity="0.5">
+              <line x1="15" y1="40" x2="15" y2="110"/>
+              <line x1="30" y1="40" x2="30" y2="110"/>
+              <line x1="45" y1="40" x2="45" y2="110"/>
+              <line x1="75" y1="40" x2="75" y2="110"/>
+              <line x1="90" y1="40" x2="90" y2="110"/>
+              <line x1="105" y1="40" x2="105" y2="110"/>
+            </g>
+            <rect x="45" y="75" width="30" height="35" fill="#0A2A0A"/>
+            <rect x="10" y="55" width="22" height="18" fill="#C8A96E" opacity="0.4"/>
+            <rect x="88" y="55" width="22" height="18" fill="#C8A96E" opacity="0.35"/>
+          </g>
+          <!-- Surrounding greenery -->
+          <circle cx="60" cy="140" r="25" fill="#1A3A1A" opacity="0.7"/>
+          <circle cx="260" cy="135" r="30" fill="#1A3A1A" opacity="0.7"/>
+        </svg>
+        <div class="stay-overlay"></div>
+      </div>
+      <div class="stay-info">
+        <span class="stay-type">Heritage</span>
+        <h3 class="stay-name">Bamboo Cottage</h3>
+        <div class="stay-features">
+          <span class="stay-feat">Handcrafted</span>
+          <span class="stay-feat">Garden Bath</span>
+          <span class="stay-feat">Hill View</span>
+        </div>
+        <div class="stay-price">From ₹7,000 <span>/ night</span></div>
+      </div>
+    </div>
+
+    <div class="stay-card">
+      <div class="stay-visual">
+        <svg viewBox="0 0 300 220" class="visual-bg" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
+          <rect width="300" height="220" fill="#1A1008"/>
+          <!-- Tea garden view from villa -->
+          <g fill="#1A3A1A">
+            <path d="M0,140 Q75,120 150,135 Q225,120 300,130 L300,220 L0,220 Z" opacity="0.8"/>
+            <path d="M0,160 Q75,145 150,155 Q225,145 300,150 L300,220 L0,220 Z" opacity="0.6"/>
+            <path d="M0,180 Q75,170 150,175 Q225,168 300,172 L300,220 L0,220 Z" opacity="0.5"/>
+          </g>
+          <!-- Eco villa -->
+          <rect x="90" y="70" width="120" height="70" fill="#2A1A08"/>
+          <polygon points="90,70 150,40 210,70" fill="#3A2A0A"/>
+          <rect x="120" y="95" width="60" height="45" fill="#1A0A05"/>
+          <!-- Veranda -->
+          <rect x="80" y="100" width="140" height="8" fill="#4A3A1A"/>
+          <line x1="80" y1="100" x2="80" y2="140" stroke="#4A3A1A" stroke-width="4"/>
+          <line x1="220" y1="100" x2="220" y2="140" stroke="#4A3A1A" stroke-width="4"/>
+          <!-- Warm lights -->
+          <rect x="125" y="100" width="25" height="18" fill="#C8A96E" opacity="0.4"/>
+          <rect x="160" y="100" width="25" height="18" fill="#C8A96E" opacity="0.3"/>
+        </svg>
+        <div class="stay-overlay"></div>
+      </div>
+      <div class="stay-info">
+        <span class="stay-type">Premium</span>
+        <h3 class="stay-name">Tea Garden Eco Villa</h3>
+        <div class="stay-features">
+          <span class="stay-feat">Tea Estate</span>
+          <span class="stay-feat">Veranda</span>
+          <span class="stay-feat">Spa Access</span>
+        </div>
+        <div class="stay-price">From ₹14,000 <span>/ night</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PACKAGES -->
+<section class="packages" id="packages">
+  <div class="section-header centered reveal">
+    <p class="section-eyebrow">Curated Itineraries</p>
+    <h2 class="section-title">The Right Length<br>for <em>Every Journey</em></h2>
+    <p class="section-desc" style="margin-top:16px;">From five-day immersions to 60-day long-stay retreats — fully managed, deeply personal, and unlike anything else in India.</p>
+  </div>
+
+  <div class="pkg-tabs">
+    <button class="pkg-tab active" onclick="switchPkg(this,'short')">Short Stays (5–14 days)</button>
+    <button class="pkg-tab" onclick="switchPkg(this,'long')">Long Retreats (15–60 days)</button>
+  </div>
+
+  <div id="pkg-short" class="pkg-grid">
+    <div class="pkg-card reveal">
+      <div class="pkg-duration">5</div>
+      <div class="pkg-unit">Days</div>
+      <div class="pkg-name">Forest First Taste</div>
+      <p class="pkg-tagline">Your first encounter with Karbi Anglong — unhurried, guided, and completely taken care of from airport to farewell.</p>
+      <div class="pkg-includes">
+        <div class="pkg-includes-title">Includes</div>
+        <div class="pkg-item">Airport pickup & luxury SUV transfers</div>
+        <div class="pkg-item">4 nights bamboo cottage or eco tent</div>
+        <div class="pkg-item">Guided forest walk & bamboo cooking class</div>
+        <div class="pkg-item">All Karbi & Assamese meals</div>
+        <div class="pkg-item">Evening cultural storytelling</div>
+      </div>
+      <div class="pkg-price">From ₹42,000 <span>per person</span></div>
+    </div>
+
+    <div class="pkg-card featured reveal reveal-delay-1">
+      <span class="pkg-badge">Most Loved</span>
+      <div class="pkg-duration">9</div>
+      <div class="pkg-unit">Days</div>
+      <div class="pkg-name">The Karbi Deep Dive</div>
+      <p class="pkg-tagline">Singhason Hills, tribal villages, Kaziranga safari, tea estates — the full Northeast in nine seamlessly managed days.</p>
+      <div class="pkg-includes">
+        <div class="pkg-includes-title">Includes</div>
+        <div class="pkg-item">All transfers, luxury SUV & chauffeur</div>
+        <div class="pkg-item">8 nights across 3 curated properties</div>
+        <div class="pkg-item">Kaziranga jeep safari (private)</div>
+        <div class="pkg-item">Tribal village immersion & elder meeting</div>
+        <div class="pkg-item">Tea estate sunrise & tasting session</div>
+        <div class="pkg-item">All meals, wellness session, 24/7 support</div>
+      </div>
+      <div class="pkg-price">From ₹88,000 <span>per person</span></div>
+    </div>
+
+    <div class="pkg-card reveal reveal-delay-2">
+      <div class="pkg-duration">14</div>
+      <div class="pkg-unit">Days</div>
+      <div class="pkg-name">Northeast Traverse</div>
+      <p class="pkg-tagline">Karbi Anglong through Haflong to Meghalaya's root bridges — a cinematic slow-travel journey across hidden Northeast India.</p>
+      <div class="pkg-includes">
+        <div class="pkg-includes-title">Includes</div>
+        <div class="pkg-item">Full logistics & private vehicle throughout</div>
+        <div class="pkg-item">13 nights, 5+ distinct destinations</div>
+        <div class="pkg-item">Meghalaya sacred grove & root bridge trek</div>
+        <div class="pkg-item">Private river camp, 2 nights</div>
+        <div class="pkg-item">Cooking, wellness & cultural workshops</div>
+        <div class="pkg-item">All meals, curator guide, photography session</div>
+      </div>
+      <div class="pkg-price">From ₹1,45,000 <span>per person</span></div>
+    </div>
+  </div>
+
+  <div id="pkg-long" class="pkg-grid" style="display:none;">
+    <div class="pkg-card reveal">
+      <div class="pkg-duration">15</div>
+      <div class="pkg-unit">Days</div>
+      <div class="pkg-name">Creative Residency</div>
+      <p class="pkg-tagline">For writers, artists, and photographers — a fully supported residency with studio space, guides, and creative solitude.</p>
+      <div class="pkg-includes">
+        <div class="pkg-includes-title">Includes</div>
+        <div class="pkg-item">Private bamboo cottage with workspace</div>
+        <div class="pkg-item">High-speed internet & creative support</div>
+        <div class="pkg-item">Daily meals & guided field excursions</div>
+        <div class="pkg-item">Weekly cultural immersion sessions</div>
+        <div class="pkg-item">Transportation on demand</div>
+      </div>
+      <div class="pkg-price">From ₹1,20,000 <span>per person</span></div>
+    </div>
+    <div class="pkg-card featured reveal reveal-delay-1">
+      <span class="pkg-badge">For Remote Workers</span>
+      <div class="pkg-duration">30</div>
+      <div class="pkg-unit">Days</div>
+      <div class="pkg-name">Slow Work Retreat</div>
+      <p class="pkg-tagline">Work from nature. High-speed fiber, beautiful surroundings, daily wellness, and guided weekends — the antidote to city burnout.</p>
+      <div class="pkg-includes">
+        <div class="pkg-includes-title">Includes</div>
+        <div class="pkg-item">Eco villa with dedicated workspace & fast WiFi</div>
+        <div class="pkg-item">Daily yoga, forest walks & wellness access</div>
+        <div class="pkg-item">All meals — morning to evening</div>
+        <div class="pkg-item">4 weekend excursions included</div>
+        <div class="pkg-item">Curated social & cultural events</div>
+        <div class="pkg-item">Airport transfers & laundry service</div>
+      </div>
+      <div class="pkg-price">From ₹2,80,000 <span>per person</span></div>
+    </div>
+    <div class="pkg-card reveal reveal-delay-2">
+      <div class="pkg-duration">60</div>
+      <div class="pkg-unit">Days</div>
+      <div class="pkg-name">The Long Return</div>
+      <p class="pkg-tagline">For healers, seekers, and those who want to belong somewhere new. Two months deep in Karbi culture, nature, and self.</p>
+      <div class="pkg-includes">
+        <div class="pkg-includes-title">Includes</div>
+        <div class="pkg-item">Premium eco villa, fully serviced</div>
+        <div class="pkg-item">Daily wellness & Ayurvedic program</div>
+        <div class="pkg-item">Language & culture immersion sessions</div>
+        <div class="pkg-item">Full access to all regional experiences</div>
+        <div class="pkg-item">Personal experience curator assigned</div>
+        <div class="pkg-item">All meals, transfers & local SIM</div>
+      </div>
+      <div class="pkg-price">From ₹5,20,000 <span>per person</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- TRANSPORT -->
+<section class="transport" id="transport">
+  <div class="transport-inner">
+    <div class="reveal">
+      <p class="section-eyebrow">Getting There in Style</p>
+      <h2 class="section-title" style="margin-bottom:40px;">Every Transfer,<br>a <em>Seamless Luxury</em></h2>
+      <div class="transport-feature">
+        <div class="transport-icon">✈</div>
+        <div class="transport-feature-text">
+          <h4>Airport & Rail Pickup</h4>
+          <p>Greeted by name. Refreshments ready. We meet you at Jorhat, Dibrugarh, or Silchar — however you arrive, your journey begins with ease.</p>
+        </div>
+      </div>
+      <div class="transport-feature">
+        <div class="transport-icon">🚙</div>
+        <div class="transport-feature-text">
+          <h4>Luxury SUV Fleet</h4>
+          <p>Comfortable, air-conditioned vehicles with experienced local chauffeurs who know every road, every shortcut, and the best stopping places.</p>
+        </div>
+      </div>
+      <div class="transport-feature">
+        <div class="transport-icon">🧭</div>
+        <div class="transport-feature-text">
+          <h4>Curated Guides</h4>
+          <p>Each guide is a storyteller, ecologist, and cultural bridge — Karbi-born, trained to listen as much as speak.</p>
+        </div>
+      </div>
+      <div class="transport-feature">
+        <div class="transport-icon">📞</div>
+        <div class="transport-feature-text">
+          <h4>24/7 Concierge</h4>
+          <p>One dedicated contact handles everything — changes, needs, surprises. You are never on your own.</p>
+        </div>
+      </div>
+    </div>
+    <div class="transport-visual reveal reveal-delay-2">
+      <svg viewBox="0 0 400 300" style="width:100%;opacity:0.6;margin-bottom:24px;" xmlns="http://www.w3.org/2000/svg">
+        <!-- Road through forest -->
+        <rect width="400" height="300" fill="transparent"/>
+        <path d="M200,300 Q190,200 180,100 Q175,50 200,0" stroke="#C8A96E" stroke-width="40" fill="none" opacity="0.08"/>
+        <path d="M200,300 Q190,200 180,100 Q175,50 200,0" stroke="#C8A96E" stroke-width="2" fill="none" opacity="0.3" stroke-dasharray="15,10"/>
+        <!-- Trees on sides -->
+        <g fill="#1A3A1A" opacity="0.5">
+          <circle cx="120" cy="80" r="35"/>
+          <circle cx="100" cy="120" r="30"/>
+          <circle cx="80" cy="170" r="32"/>
+          <circle cx="290" cy="90" r="33"/>
+          <circle cx="310" cy="130" r="28"/>
+          <circle cx="295" cy="175" r="35"/>
+        </g>
+        <!-- SUV silhouette on road -->
+        <g transform="translate(160,160)">
+          <rect x="5" y="15" width="55" height="22" rx="4" fill="#2A2A1A"/>
+          <rect x="12" y="8" width="36" height="18" rx="3" fill="#1A1A0A"/>
+          <circle cx="15" cy="37" r="6" fill="#0A0A0A"/>
+          <circle cx="50" cy="37" r="6" fill="#0A0A0A"/>
+          <rect x="13" y="12" width="14" height="10" fill="#C8A96E" opacity="0.3"/>
+          <rect x="37" y="12" width="9" height="10" fill="#C8A96E" opacity="0.3"/>
+        </g>
+      </svg>
+      <h3 class="transport-headline">"Your only task<br>is to be present."</h3>
+      <p style="font-size:0.75rem; font-weight:200; color:var(--text-muted); letter-spacing:0.15em; margin-top:12px;">Everything else is ours to handle.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CUISINE -->
+<section class="cuisine" id="cuisine">
+  <div class="section-header reveal">
+    <div>
+      <p class="section-eyebrow">Culinary Experiences</p>
+      <h2 class="section-title">A Cuisine the<br>World <em>Hasn't Found Yet</em></h2>
+    </div>
+    <p class="section-desc">Karbi and Assamese food is one of India's last truly undiscovered culinary traditions. Rice fermented in bamboo. Smoked pork with foraged greens. River fish slow-cooked in banana leaf. We bring it to the table — and into your hands.</p>
+  </div>
+
+  <div class="cuisine-grid">
+    <div class="cuisine-card reveal">
+      <div class="cuisine-emoji">🎋</div>
+      <div class="cuisine-name">Bamboo Smoked Dishes</div>
+      <p class="cuisine-desc">Ancestral cooking inside sealed bamboo tubes — rice, pork, fish, and wild herbs slow-cooked in their own steam and smoke.</p>
+    </div>
+    <div class="cuisine-card reveal reveal-delay-1">
+      <div class="cuisine-emoji">🍵</div>
+      <div class="cuisine-name">Tea Estate Tasting</div>
+      <p class="cuisine-desc">Single-estate Assam teas tasted at source, guided by the estate's tea sommelier. Morning ritual elevated to ceremony.</p>
+    </div>
+    <div class="cuisine-card reveal reveal-delay-2">
+      <div class="cuisine-emoji">🌊</div>
+      <div class="cuisine-name">Riverside Dining</div>
+      <p class="cuisine-desc">Tables set at the water's edge, freshly caught river fish on banana-leaf platters, and fire-lit evenings with Karbi folk music.</p>
+    </div>
+    <div class="cuisine-card reveal reveal-delay-3">
+      <div class="cuisine-emoji">🧑‍🍳</div>
+      <div class="cuisine-name">Cooking Workshops</div>
+      <p class="cuisine-desc">Cook alongside Karbi grandmothers in village kitchens. Learn forgotten techniques, eat what you make, leave with recipes and stories.</p>
+    </div>
+  </div>
+
+  <div class="cuisine-story reveal">
+    <div class="cuisine-story-visual">🔥</div>
+    <div class="cuisine-story-text">
+      <h3 class="cuisine-story-title">The <em>Fire</em> Has Always Been the Table</h3>
+      <p class="cuisine-story-body">In Karbi culture, the hearth is not a cooking device — it is the gathering place of memory, story, and kinship. When you eat with us, you are not just tasting food. You are tasting the land, the season, the hands that know it best.</p>
+      <p class="cuisine-story-body">Every meal we serve is sourced from village farmers, river fishermen, and forest foragers we have known for years. Nothing is imported. Nothing is generic. Everything is alive with place.</p>
+      <a href="#booking" class="btn-ghost" style="display:inline-block; margin-top:8px;">Reserve a Culinary Experience</a>
+    </div>
+  </div>
+</section>
+
+<!-- WELLNESS -->
+<section class="wellness" id="wellness">
+  <div class="section-header centered reveal">
+    <p class="section-eyebrow">Wellness Retreats</p>
+    <h2 class="section-title">Healing That<br>Comes From <em>Place</em></h2>
+    <p class="section-desc" style="margin-top:16px;">Rooted in forest ecology, Ayurvedic tradition, and the deep quiet of Karbi Anglong — our wellness offerings are not add-ons. They are the experience.</p>
+  </div>
+
+  <div class="wellness-inner">
+    <div class="wellness-card reveal">
+      <div class="wellness-num">01</div>
+      <div class="wellness-title">Forest Bathing (Shinrin-yoku)</div>
+      <p class="wellness-desc">Guided slow walks through old-growth bamboo and broad-leaf forest. No agenda, no destination. Just breathing, noticing, and the science-backed medicine of trees.</p>
+    </div>
+    <div class="wellness-card reveal reveal-delay-1">
+      <div class="wellness-num">02</div>
+      <div class="wellness-title">Riverside Yoga & Meditation</div>
+      <p class="wellness-desc">Dawn sessions at the water's edge with experienced teachers trained in classical Hatha and mindfulness. The sound of the river is your metronome.</p>
+    </div>
+    <div class="wellness-card reveal reveal-delay-2">
+      <div class="wellness-num">03</div>
+      <div class="wellness-title">Indigenous Healing Practices</div>
+      <p class="wellness-desc">Time with Karbi healers — plant medicine walks, traditional massage with forest oils, and oral teachings about the body's relationship with the land.</p>
+    </div>
+  </div>
+</section>
+
+<!-- REMOTE WORK -->
+<section class="remote" id="remote">
+  <div class="remote-inner reveal">
+    <div>
+      <p class="section-eyebrow">Remote Work Retreats</p>
+      <h2 class="section-title" style="margin-bottom:16px;">Your Desk in the<br><em>Northeast</em></h2>
+      <p class="section-desc" style="margin-bottom:32px;">The world's most productive and restorative office: forest views, fast fiber internet, no commute, and meals delivered to your bamboo veranda. For 15 to 60 days, work differently.</p>
+      <a href="#packages" class="btn-primary">View Long-Stay Packages</a>
+    </div>
+    <div>
+      <div class="remote-features">
+        <div class="remote-feat reveal reveal-delay-1">
+          <div class="remote-feat-icon">⚡</div>
+          <div class="remote-feat-title">High-Speed Fiber</div>
+          <p class="remote-feat-desc">Dedicated broadband for video calls, uploads, and deep work.</p>
+        </div>
+        <div class="remote-feat reveal reveal-delay-2">
+          <div class="remote-feat-icon">🌅</div>
+          <div class="remote-feat-title">Morning Wellness</div>
+          <p class="remote-feat-desc">Yoga, forest walks, and meditation before your first meeting.</p>
+        </div>
+        <div class="remote-feat reveal reveal-delay-1">
+          <div class="remote-feat-icon">🍽</div>
+          <div class="remote-feat-title">All Meals Included</div>
+          <p class="remote-feat-desc">Three meals a day, freshly prepared, at your table.</p>
+        </div>
+        <div class="remote-feat reveal reveal-delay-2">
+          <div class="remote-feat-icon">🌿</div>
+          <div class="remote-feat-title">Weekend Escapes</div>
+          <p class="remote-feat-desc">Curated day trips and overnight excursions every weekend.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="section-header centered reveal">
+    <p class="section-eyebrow">From Our Guests</p>
+    <h2 class="section-title">Voices from<br>the <em>Hills</em></h2>
+  </div>
+
+  <div class="test-slider">
+    <div class="test-card reveal">
+      <div class="test-stars">★★★★★</div>
+      <p class="test-text">"I came to Northeast India on a nine-day Karbi Deep Dive and left knowing I'd found something I didn't know I was looking for. The guides, the food, the silences — all of it was extraordinary."</p>
+      <div class="test-author">
+        <span class="test-name">Meera Krishnamurthy</span>
+        <span class="test-origin">Bangalore · September 2024</span>
+      </div>
+    </div>
+    <div class="test-card reveal reveal-delay-1">
+      <div class="test-stars">★★★★★</div>
+      <p class="test-text">"As a remote worker who spent 30 days at the Slow Work Retreat — it completely reset my relationship with work and nature. The fiber was fast, the food was extraordinary, and the weekends were the best of my life."</p>
+      <div class="test-author">
+        <span class="test-name">Tobias Lehmann</span>
+        <span class="test-origin">Berlin · December 2024</span>
+      </div>
+    </div>
+    <div class="test-card reveal reveal-delay-2">
+      <div class="test-stars">★★★★★</div>
+      <p class="test-text">"Karbi Hills Living is unlike any travel company I've worked with. They are hosts, storytellers, and family. The cultural depth they bring to every experience is something most luxury travel entirely misses."</p>
+      <div class="test-author">
+        <span class="test-name">Priya & Arjun Sethuraman</span>
+        <span class="test-origin">Mumbai · February 2025</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STORIES -->
+<section class="stories" id="stories">
+  <div class="section-header reveal">
+    <div>
+      <p class="section-eyebrow">Field Notes</p>
+      <h2 class="section-title">Stories from<br><em>Inside</em> the Land</h2>
+    </div>
+    <p class="section-desc">Travel writing, cultural essays, culinary notes, and wildlife journals from our guides, guests, and resident storytellers.</p>
+  </div>
+
+  <div class="stories-grid reveal">
+    <div class="story-featured">
+      <span class="story-tag">Long Read · Culture</span>
+      <h3 class="story-title">The Last Tribe to<br>Name Every Tree</h3>
+      <p class="story-excerpt">A walk through Singhason Hills with Karbi forest-keeper Longri Teron, who carries the names — Karbi, botanical, spiritual — of over 400 forest plants. A conversation about language, ecology, and what it means to belong to a place.</p>
+      <div class="story-meta">
+        <span>By Longri Teron</span>
+        <span class="story-meta-dot"></span>
+        <span>March 2025</span>
+        <span class="story-meta-dot"></span>
+        <span>12 min read</span>
+      </div>
+    </div>
+    <div class="stories-aside">
+      <div class="story-mini">
+        <span class="story-tag">Cuisine</span>
+        <div class="story-mini-title">Bamboo as Kitchen:<br>An Ancient Technology</div>
+        <p class="story-mini-excerpt">How the Karbi people cook an entire meal inside a sealed bamboo tube — and why it produces flavors no modern kitchen can replicate.</p>
+      </div>
+      <div class="story-mini">
+        <span class="story-tag">Wildlife</span>
+        <div class="story-mini-title">Dawn at the Edge of Kaziranga</div>
+        <p class="story-mini-excerpt">Before the safari begins, the grassland speaks. Notes from a morning spent listening before the jeeps start.</p>
+      </div>
+      <div class="story-mini">
+        <span class="story-tag">Slow Travel</span>
+        <div class="story-mini-title">Thirty Days Without a City</div>
+        <p class="story-mini-excerpt">A remote worker's honest account of detachment, reconnection, and finding a different kind of productivity in Karbi hills.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING -->
+<section class="booking" id="booking">
+  <div class="section-header centered reveal">
+    <p class="section-eyebrow">Begin Your Journey</p>
+    <h2 class="section-title">Tell Us Your<br><em>Dream</em> — We'll Build It</h2>
+    <p class="section-desc" style="margin-top:16px;">No two journeys are the same. Share your vision and we'll craft a personalised experience that exceeds it.</p>
+  </div>
+
+  <div class="booking-inner">
+    <div class="booking-form reveal">
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Your Name</label>
+          <input type="text" class="form-input" placeholder="Full name">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email</label>
+          <input type="email" class="form-input" placeholder="your@email.com">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">WhatsApp / Phone</label>
+          <input type="tel" class="form-input" placeholder="+91 or international">
+        </div>
+        <div class="form-group">
+          <label class="form-label">No. of Guests</label>
+          <input type="number" class="form-input" placeholder="1–12" min="1" max="12">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Arrival Date</label>
+          <input type="date" class="form-input">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Duration</label>
+          <select class="form-select">
+            <option>Select duration</option>
+            <option>5 days</option>
+            <option>7 days</option>
+            <option>9 days</option>
+            <option>14 days</option>
+            <option>15–30 days (retreat)</option>
+            <option>30–60 days (long stay)</option>
+            <option>Custom</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Package Interest</label>
+        <select class="form-select">
+          <option>Select a package</option>
+          <option>Forest First Taste (5 days)</option>
+          <option>The Karbi Deep Dive (9 days)</option>
+          <option>Northeast Traverse (14 days)</option>
+          <option>Creative Residency (15 days)</option>
+          <option>Slow Work Retreat (30 days)</option>
+          <option>The Long Return (60 days)</option>
+          <option>Custom Itinerary</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Tell Us Your Vision</label>
+        <textarea class="form-textarea" placeholder="What draws you to Northeast India? What do you hope to feel, see, or understand? Any special requirements? The more you share, the better we can craft for you."></textarea>
+      </div>
+      <button class="btn-primary" style="align-self:flex-start; cursor:none;" onclick="submitBooking()">Send Enquiry</button>
+    </div>
+
+    <div class="booking-info reveal reveal-delay-2">
+      <div class="booking-promise">
+        <h3>The Karbi Hills Promise</h3>
+        <div class="promise-item">
+          <span class="promise-icon">✦</span>
+          <span>Response within 24 hours from our experience team</span>
+        </div>
+        <div class="promise-item">
+          <span class="promise-icon">✦</span>
+          <span>No generic itineraries — every journey is built for you</span>
+        </div>
+        <div class="promise-item">
+          <span class="promise-icon">✦</span>
+          <span>Transparent, all-inclusive pricing — no hidden costs</span>
+        </div>
+        <div class="promise-item">
+          <span class="promise-icon">✦</span>
+          <span>Fully managed from first airport pickup to farewell</span>
+        </div>
+        <div class="promise-item">
+          <span class="promise-icon">✦</span>
+          <span>Local, Karbi-born team — authentic, not outsourced</span>
+        </div>
+      </div>
+
+      <div class="whatsapp-cta">
+        <span class="whatsapp-icon">💬</span>
+        <div class="whatsapp-text">
+          <h4>Prefer to Talk Directly?</h4>
+          <p>Message us on WhatsApp for instant conversation with our experience team. Available daily, 8am–9pm IST.</p>
+          <a href="https://wa.me/919XXXXXXXXX?text=Hello! I'm interested in a Karbi Hills Living experience." class="btn-whatsapp" target="_blank">
+            Open WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="#" class="nav-logo">
+        Karbi Hills Living
+        <span>Diphu · Karbi Anglong · Northeast India</span>
+      </a>
+      <p class="footer-tagline">Where luxury means waking to birdsong, dining on bamboo-smoked heritage food, and travelling through India's most beautiful forgotten landscape — unhurried and deeply cared for.</p>
+      <div class="footer-social">
+        <a href="#" class="social-link">in</a>
+        <a href="#" class="social-link">ig</a>
+        <a href="#" class="social-link">yt</a>
+        <a href="#" class="social-link">fb</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Experiences</h4>
+      <ul class="footer-links">
+        <li><a href="#experiences">Nature & Ecology</a></li>
+        <li><a href="#experiences">Karbi Culture</a></li>
+        <li><a href="#experiences">Adventure Trails</a></li>
+        <li><a href="#experiences">Wellness Retreats</a></li>
+        <li><a href="#experiences">Culinary Journeys</a></li>
+        <li><a href="#experiences">Remote Work</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Destinations</h4>
+      <ul class="footer-links">
+        <li><a href="#destinations">Diphu</a></li>
+        <li><a href="#destinations">Singhason Hills</a></li>
+        <li><a href="#destinations">Kaziranga</a></li>
+        <li><a href="#destinations">Haflong</a></li>
+        <li><a href="#destinations">Umrangso</a></li>
+        <li><a href="#destinations">Meghalaya Routes</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Plan & Contact</h4>
+      <ul class="footer-links">
+        <li><a href="#packages">5–14 Day Packages</a></li>
+        <li><a href="#packages">15–60 Day Retreats</a></li>
+        <li><a href="#booking">Custom Itineraries</a></li>
+        <li><a href="#booking">Enquire Now</a></li>
+        <li><a href="mailto:hello@karbihillsliving.com">hello@karbihillsliving.com</a></li>
+        <li><a href="#booking">WhatsApp Us</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Karbi Hills Living, Diphu, Karbi Anglong, Assam, India</span>
+    <span>Crafted with care for the land and its people</span>
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script>
+// CURSOR
+const cursor = document.getElementById('cursor');
+const cursorRing = document.getElementById('cursorRing');
+let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
+
+document.addEventListener('mousemove', e => {
+  mouseX = e.clientX; mouseY = e.clientY;
+  cursor.style.left = mouseX + 'px';
+  cursor.style.top = mouseY + 'px';
+});
+
+function animateCursor() {
+  ringX += (mouseX - ringX) * 0.12;
+  ringY += (mouseY - ringY) * 0.12;
+  cursorRing.style.left = ringX + 'px';
+  cursorRing.style.top = ringY + 'px';
+  requestAnimationFrame(animateCursor);
+}
+animateCursor();
+
+document.querySelectorAll('a,button,.exp-card,.stay-card,.dest-card,.pkg-card').forEach(el => {
+  el.addEventListener('mouseenter', () => {
+    cursor.style.width = '16px'; cursor.style.height = '16px';
+    cursorRing.style.width = '54px'; cursorRing.style.height = '54px';
+    cursorRing.style.borderColor = 'rgba(200,169,110,0.8)';
+  });
+  el.addEventListener('mouseleave', () => {
+    cursor.style.width = '8px'; cursor.style.height = '8px';
+    cursorRing.style.width = '36px'; cursorRing.style.height = '36px';
+    cursorRing.style.borderColor = 'rgba(200,169,110,0.5)';
+  });
+});
+
+// NAV SCROLL
+window.addEventListener('scroll', () => {
+  document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 60);
+});
+
+// THEME TOGGLE
+const themeToggle = document.getElementById('themeToggle');
+themeToggle.addEventListener('click', () => {
+  const html = document.documentElement;
+  const isDark = html.getAttribute('data-theme') === 'dark';
+  html.setAttribute('data-theme', isDark ? 'light' : 'dark');
+  themeToggle.textContent = isDark ? '🌙' : '☀';
+});
+
+// SCROLL REVEAL
+const revealObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('revealed');
+    }
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+// EXPERIENCE CATEGORIES
+document.querySelectorAll('.exp-cat').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.exp-cat').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  });
+});
+
+// PACKAGE TABS
+function switchPkg(btn, type) {
+  document.querySelectorAll('.pkg-tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('pkg-short').style.display = type === 'short' ? 'grid' : 'none';
+  document.getElementById('pkg-long').style.display = type === 'long' ? 'grid' : 'none';
+}
+
+// PARTICLES
+const particleContainer = document.getElementById('particles');
+for (let i = 0; i < 18; i++) {
+  const p = document.createElement('div');
+  p.className = 'particle';
+  const size = Math.random() * 4 + 2;
+  p.style.cssText = `
+    width: ${size}px; height: ${size}px;
+    left: ${Math.random() * 100}%;
+    animation-duration: ${Math.random() * 12 + 8}s;
+    animation-delay: ${Math.random() * 10}s;
+  `;
+  particleContainer.appendChild(p);
+}
+
+// BOOKING SUBMIT
+function submitBooking() {
+  const btn = document.querySelector('.booking-form .btn-primary');
+  const orig = btn.textContent;
+  btn.textContent = 'Sending...';
+  btn.style.opacity = '0.7';
+  setTimeout(() => {
+    btn.textContent = '✦ Enquiry Sent';
+    btn.style.background = 'var(--forest-mid)';
+    btn.style.color = 'var(--cream)';
+    setTimeout(() => {
+      btn.textContent = orig;
+      btn.style.background = '';
+      btn.style.opacity = '';
+      btn.style.color = '';
+    }, 3500);
+  }, 1200);
+}
+
+// PARALLAX on hero
+window.addEventListener('scroll', () => {
+  const y = window.scrollY;
+  const heroBg = document.querySelector('.hero-bg');
+  if (heroBg) heroBg.style.transform = `translateY(${y * 0.3}px)`;
+});
+
+// SMOOTH ANCHOR + LANGUAGE
+document.getElementById('langSelect').addEventListener('change', function() {
+  const langs = {
+    en: 'Karbi Hills Living', hi: 'करबी हिल्स लिविंग',
+    as: 'কার্বি হিলছ লিভিং', kb: 'Karbi Hills Living'
+  };
+  // visual feedback only
+  document.querySelector('.nav-logo').childNodes[0].textContent = langs[this.value] || 'Karbi Hills Living';
+});
+</script>
+</body>
+</html>
